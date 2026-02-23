@@ -3,371 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlankAI — AI-Powered Daily Field Reports for General Contractors</title>
-<meta name="description" content="BlankAI converts subcontractor voice messages into professional PDF daily reports. Built for General Contractors who want real-time visibility into every jobsite.">
-<meta property="og:title" content="BlankAI — Daily Field Reports, Automated">
-<meta property="og:description" content="Subcontractors send a voice note. You get a professional PDF report. That simple.">
+<title>BlankAI — AI-Powered Field Intelligence for General Contractors</title>
+<meta name="description" content="BlankAI transforms how General Contractors manage daily field reporting. Subcontractors send voice notes, photos, and receipts on WhatsApp. You get professional PDF reports, expense tracking, and project intelligence — automatically.">
+<meta property="og:title" content="BlankAI — Field Intelligence for General Contractors">
+<meta property="og:description" content="Daily field reports, expense tracking, and project intelligence — all from a WhatsApp voice note.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://blankaiwork.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --brand: #0E3386;
-    --brand-dark: #0A2666;
-    --brand-light: #1A4FBF;
-    --ink: #1B1F23;
-    --steel: #6B7B8D;
-    --cloud: #E2E8F0;
-    --snow: #F5F7F9;
-    --white: #FFFFFF;
-    --accent: #2D7FF9;
-    --success: #16A34A;
+    --brand: #0E3386; --brand-dark: #0A2666; --brand-light: #1A4FBF;
+    --ink: #1B1F23; --steel: #6B7B8D; --cloud: #E2E8F0; --snow: #F5F7F9;
+    --white: #FFFFFF; --success: #22C55E; --warning: #F59E0B; --danger: #EF4444;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', Arial, sans-serif;
-    color: var(--ink);
-    background: var(--white);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: 'DM Sans', Arial, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
   /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--cloud);
-    padding: 0 24px;
-    transition: box-shadow 0.3s;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cloud); transition: box-shadow 0.3s; }
   nav.scrolled { box-shadow: 0 2px 20px rgba(14,51,134,0.08); }
-  .nav-inner {
-    max-width: 1140px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-  }
+  .nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .logo-group { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-mark {
-    width: 36px; height: 36px;
-    background: linear-gradient(145deg, var(--brand) 0%, var(--brand-dark) 100%);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 8px rgba(14,51,134,0.25);
-  }
-  .logo-text {
-    font-size: 20px; font-weight: 700; color: var(--brand);
-    letter-spacing: -0.5px;
-  }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    font-size: 14px; font-weight: 500; color: var(--steel);
-    text-decoration: none; transition: color 0.2s;
-  }
+  .logo-mark { width: 36px; height: 36px; background: linear-gradient(145deg, var(--brand) 0%, var(--brand-dark) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(14,51,134,0.25); }
+  .logo-text-group { display: flex; flex-direction: column; }
+  .logo-name { font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; line-height: 1; }
+  .logo-name em { font-style: normal; color: var(--brand); }
+  .logo-tag { font-size: 7.5px; font-weight: 600; color: var(--steel); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 2px; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--steel); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--brand); }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 22px; border-radius: 8px; font-weight: 600;
-    font-size: 14px; text-decoration: none; transition: all 0.25s;
-    cursor: pointer; border: none; font-family: inherit;
-  }
-  .btn-primary {
-    background: var(--brand); color: var(--white);
-    box-shadow: 0 2px 8px rgba(14,51,134,0.3);
-  }
-  .btn-primary:hover {
-    background: var(--brand-light);
-    box-shadow: 0 4px 16px rgba(14,51,134,0.35);
-    transform: translateY(-1px);
-  }
-  .btn-outline {
-    background: transparent; color: var(--brand);
-    border: 1.5px solid var(--brand);
-  }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; font-family: inherit; }
+  .btn-primary { background: var(--brand); color: var(--white); box-shadow: 0 2px 8px rgba(14,51,134,0.3); }
+  .btn-primary:hover { background: var(--brand-light); box-shadow: 0 4px 16px rgba(14,51,134,0.35); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--brand); border: 1.5px solid var(--brand); }
   .btn-outline:hover { background: var(--snow); }
+  .btn-lg { padding: 14px 32px; font-size: 16px; border-radius: 10px; }
 
   /* ─── HERO ─── */
-  .hero {
-    padding: 140px 24px 80px;
-    background: linear-gradient(168deg, var(--snow) 0%, var(--white) 40%, #EEF2FF 100%);
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(14,51,134,0.06) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .hero-inner {
-    max-width: 1140px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-    align-items: center; position: relative;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(14,51,134,0.08); color: var(--brand);
-    padding: 6px 14px; border-radius: 20px;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
-    text-transform: uppercase; margin-bottom: 20px;
-  }
-  .hero-badge span { display: inline-block; width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
-  .hero h1 {
-    font-size: clamp(36px, 5vw, 52px); font-weight: 700;
-    line-height: 1.1; letter-spacing: -1.5px;
-    color: var(--ink); margin-bottom: 20px;
-  }
-  .hero h1 em {
-    font-style: normal; color: var(--brand);
-    background: linear-gradient(90deg, var(--brand), var(--brand-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero p {
-    font-size: 18px; color: var(--steel); line-height: 1.7;
-    margin-bottom: 32px; max-width: 480px;
-  }
-  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero { padding: 130px 24px 80px; background: linear-gradient(168deg, var(--snow) 0%, var(--white) 35%, #EEF2FF 100%); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(14,51,134,0.06) 0%, transparent 70%); border-radius: 50%; }
+  .hero-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(14,51,134,0.08); color: var(--brand); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px; }
+  .hero-badge .dot { display: inline-block; width: 6px; height: 6px; background: var(--success); border-radius: 50%; animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 { font-size: clamp(34px, 5vw, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: var(--ink); margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--brand), var(--brand-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 17px; color: var(--steel); line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+  .trust-row { display: flex; align-items: center; gap: 20px; font-size: 13px; color: var(--steel); }
+  .trust-item { display: flex; align-items: center; gap: 6px; }
+  .trust-item svg { flex-shrink: 0; }
 
   /* Phone mockup */
-  .hero-visual {
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
-  }
-  .phone-frame {
-    width: 280px; background: var(--white);
-    border-radius: 28px; padding: 16px;
-    box-shadow: 0 20px 60px rgba(14,51,134,0.15), 0 4px 16px rgba(0,0,0,0.06);
-    border: 1px solid var(--cloud);
-    position: relative;
-  }
-  .phone-header {
-    background: var(--brand);
-    border-radius: 14px 14px 0 0;
-    padding: 14px 16px;
-    color: var(--white);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .phone-header .avatar {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-  }
-  .phone-header .name { font-size: 14px; font-weight: 600; }
+  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+  .phone-frame { width: 290px; background: var(--white); border-radius: 32px; padding: 12px; box-shadow: 0 25px 80px rgba(14,51,134,0.15), 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--cloud); position: relative; }
+  .phone-notch { width: 100px; height: 6px; background: var(--cloud); border-radius: 3px; margin: 0 auto 8px; }
+  .phone-header { background: linear-gradient(135deg, #075E54 0%, #128C7E 100%); border-radius: 18px 18px 0 0; padding: 12px 14px; color: var(--white); display: flex; align-items: center; gap: 10px; }
+  .phone-header .avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(145deg, var(--brand), var(--brand-dark)); display: flex; align-items: center; justify-content: center; }
+  .phone-header .name { font-size: 15px; font-weight: 600; }
   .phone-header .sub { font-size: 11px; opacity: 0.7; }
-  .phone-chat {
-    background: #ECE5DD;
-    padding: 16px 12px;
-    display: flex; flex-direction: column; gap: 8px;
-    min-height: 240px;
-    border-radius: 0 0 14px 14px;
-  }
-  .chat-bubble {
-    max-width: 85%; padding: 8px 12px;
-    border-radius: 10px; font-size: 12px; line-height: 1.5;
-    position: relative;
-  }
-  .chat-incoming {
-    background: var(--white); align-self: flex-start;
-    border-top-left-radius: 2px;
-  }
-  .chat-outgoing {
-    background: #DCF8C6; align-self: flex-end;
-    border-top-right-radius: 2px;
-  }
-  .chat-time { font-size: 9px; color: #999; text-align: right; margin-top: 2px; }
-  .voice-note {
-    display: flex; align-items: center; gap: 8px;
-    background: #DCF8C6; padding: 8px 12px; border-radius: 10px;
-    align-self: flex-end; max-width: 85%;
-  }
-  .voice-wave { display: flex; align-items: flex-end; gap: 2px; height: 20px; }
-  .voice-wave span {
-    width: 3px; background: var(--brand); border-radius: 2px;
-    animation: wave 1.2s ease-in-out infinite;
-  }
-  .voice-wave span:nth-child(1) { height: 8px; animation-delay: 0s; }
-  .voice-wave span:nth-child(2) { height: 16px; animation-delay: 0.1s; }
-  .voice-wave span:nth-child(3) { height: 10px; animation-delay: 0.2s; }
-  .voice-wave span:nth-child(4) { height: 20px; animation-delay: 0.3s; }
-  .voice-wave span:nth-child(5) { height: 6px; animation-delay: 0.4s; }
-  .voice-wave span:nth-child(6) { height: 14px; animation-delay: 0.5s; }
-  .voice-wave span:nth-child(7) { height: 8px; animation-delay: 0.6s; }
-  @keyframes wave {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.5); }
-  }
+  .phone-chat { background: #ECE5DD; padding: 14px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 320px; border-radius: 0 0 18px 18px; }
+  .msg { max-width: 82%; padding: 7px 10px; border-radius: 8px; font-size: 12px; line-height: 1.45; position: relative; }
+  .msg-in { background: var(--white); align-self: flex-start; border-top-left-radius: 2px; }
+  .msg-out { background: #DCF8C6; align-self: flex-end; border-top-right-radius: 2px; }
+  .msg-time { font-size: 9px; color: #999; text-align: right; margin-top: 2px; }
+  .voice { display: flex; align-items: center; gap: 8px; }
+  .voice-wave { display: flex; align-items: flex-end; gap: 2px; height: 18px; }
+  .voice-wave span { width: 3px; background: #075E54; border-radius: 2px; animation: wave 1.2s ease-in-out infinite; }
+  .voice-wave span:nth-child(1){height:7px;animation-delay:0s} .voice-wave span:nth-child(2){height:14px;animation-delay:.1s} .voice-wave span:nth-child(3){height:9px;animation-delay:.2s} .voice-wave span:nth-child(4){height:18px;animation-delay:.3s} .voice-wave span:nth-child(5){height:5px;animation-delay:.4s} .voice-wave span:nth-child(6){height:12px;animation-delay:.5s} .voice-wave span:nth-child(7){height:7px;animation-delay:.6s}
+  @keyframes wave { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.4)} }
   .voice-dur { font-size: 11px; color: var(--steel); }
 
-  /* Floating PDF card */
-  .pdf-float {
-    position: absolute; top: 20px; right: -20px;
-    background: var(--white); border-radius: 12px;
-    padding: 14px; width: 180px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    border: 1px solid var(--cloud);
-    animation: floatUp 3s ease-in-out infinite;
-  }
-  @keyframes floatUp {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  .pdf-float .pdf-icon {
-    width: 28px; height: 28px; background: #E74C3C; border-radius: 6px;
-    color: white; display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 700; margin-bottom: 8px;
-  }
-  .pdf-float .pdf-title { font-size: 11px; font-weight: 600; margin-bottom: 2px; }
-  .pdf-float .pdf-sub { font-size: 10px; color: var(--steel); }
-  .pdf-float .pdf-check {
-    display: flex; align-items: center; gap: 4px;
-    font-size: 10px; color: var(--success); font-weight: 600; margin-top: 6px;
-  }
+  .pdf-float { position: absolute; top: 30px; right: -40px; background: var(--white); border-radius: 12px; padding: 14px 18px; box-shadow: 0 8px 30px rgba(14,51,134,0.12), 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--cloud); width: 200px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .pdf-float .pdf-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #DC2626, #B91C1C); border-radius: 6px; color: white; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .pdf-float .pdf-title { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .pdf-float .pdf-sub { font-size: 11px; color: var(--steel); margin-top: 2px; }
+  .pdf-float .pdf-check { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--success); font-weight: 600; margin-top: 6px; }
+
+  .expense-float { position: absolute; bottom: 20px; left: -30px; background: var(--white); border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 24px rgba(14,51,134,0.1); border: 1px solid var(--cloud); animation: float 3.5s ease-in-out infinite; animation-delay: 1s; }
+  .expense-float .exp-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+  .expense-float .exp-icon { width: 24px; height: 24px; background: rgba(14,51,134,0.08); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .expense-float .exp-vendor { font-weight: 600; color: var(--ink); }
+  .expense-float .exp-amount { color: var(--brand); font-weight: 700; }
+
+  /* ─── SECTION SHARED ─── */
+  .section-label { font-size: 12px; font-weight: 700; color: var(--brand); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; margin-bottom: 8px; }
+  .section-title { font-size: clamp(28px, 4vw, 38px); font-weight: 800; text-align: center; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 12px; }
+  .section-desc { font-size: 16px; color: var(--steel); text-align: center; max-width: 640px; margin: 0 auto 48px; line-height: 1.6; }
 
   /* ─── HOW IT WORKS ─── */
-  .how {
-    padding: 100px 24px;
-    background: var(--white);
-  }
-  .how-inner { max-width: 1140px; margin: 0 auto; }
-  .section-label {
-    font-size: 12px; font-weight: 600; color: var(--brand);
-    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
-  }
-  .section-title {
-    font-size: clamp(28px, 4vw, 40px); font-weight: 700;
-    letter-spacing: -1px; margin-bottom: 16px; line-height: 1.15;
-  }
-  .section-desc {
-    font-size: 16px; color: var(--steel); max-width: 540px;
-    margin-bottom: 56px; line-height: 1.7;
-  }
-  .steps-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 40px; position: relative;
-  }
-  .steps-grid::before {
-    content: ''; position: absolute;
-    top: 36px; left: 15%; right: 15%;
-    height: 2px; background: linear-gradient(90deg, var(--cloud), var(--brand), var(--cloud));
-    opacity: 0.3;
-  }
-  .step {
-    text-align: center; position: relative;
-    padding: 0 12px;
-  }
-  .step-num {
-    width: 72px; height: 72px; margin: 0 auto 20px;
-    background: var(--snow); border: 2px solid var(--cloud);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; position: relative; z-index: 1;
-  }
-  .step h3 {
-    font-size: 18px; font-weight: 700; margin-bottom: 8px;
-    color: var(--ink);
-  }
-  .step p { font-size: 14px; color: var(--steel); line-height: 1.6; }
+  .how { padding: 80px 24px; background: var(--white); }
+  .steps-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; position: relative; }
+  .steps-grid::before { content: ''; position: absolute; top: 36px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, transparent, var(--cloud), var(--cloud), transparent); z-index: 0; }
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-num { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; background: var(--white); border: 2px solid var(--cloud); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+  .step h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .step p { font-size: 13px; color: var(--steel); line-height: 1.5; }
 
-  /* ─── FEATURES ─── */
-  .features {
-    padding: 100px 24px;
-    background: var(--snow);
-  }
-  .features-inner { max-width: 1140px; margin: 0 auto; }
-  .feat-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px; margin-top: 56px;
-  }
-  .feat-card {
-    background: var(--white); border: 1px solid var(--cloud);
-    border-radius: 14px; padding: 28px 24px;
-    transition: all 0.3s;
-  }
-  .feat-card:hover {
-    border-color: rgba(14,51,134,0.2);
-    box-shadow: 0 8px 30px rgba(14,51,134,0.08);
-    transform: translateY(-2px);
-  }
-  .feat-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; margin-bottom: 16px;
-  }
-  .feat-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-  .feat-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+  /* ─── PLATFORM ─── */
+  .platform { padding: 80px 24px; background: var(--snow); }
+  .plat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+  .plat-card { background: var(--white); border-radius: 16px; padding: 28px 24px; border: 1px solid var(--cloud); transition: all 0.3s; }
+  .plat-card:hover { box-shadow: 0 8px 30px rgba(14,51,134,0.08); transform: translateY(-2px); }
+  .plat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+  .plat-card h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .plat-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+  .plat-card .plat-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-top: 10px; }
 
-  /* ─── SOCIAL PROOF ─── */
-  .proof {
-    padding: 80px 24px;
-    background: linear-gradient(168deg, var(--brand-dark) 0%, var(--brand) 100%);
-    color: var(--white); text-align: center;
-  }
-  .proof-inner { max-width: 800px; margin: 0 auto; }
-  .proof h2 {
-    font-size: clamp(24px, 3.5vw, 36px); font-weight: 700;
-    margin-bottom: 16px; letter-spacing: -0.5px;
-  }
-  .proof p { font-size: 16px; opacity: 0.8; margin-bottom: 40px; line-height: 1.7; }
-  .proof-stats {
-    display: flex; justify-content: center; gap: 60px;
-    flex-wrap: wrap;
-  }
-  .stat-item .stat-num {
-    font-size: 36px; font-weight: 700; display: block;
-    margin-bottom: 4px;
-  }
-  .stat-item .stat-label { font-size: 13px; opacity: 0.7; }
+  /* ─── WHATSAPP SHOWCASE ─── */
+  .wa-section { padding: 80px 24px; background: var(--white); }
+  .wa-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .wa-flow { display: flex; flex-direction: column; gap: 16px; }
+  .wa-step { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 12px; background: var(--snow); border: 1px solid transparent; transition: all 0.3s; }
+  .wa-step:hover { border-color: var(--cloud); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .wa-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .wa-step h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .wa-step p { font-size: 13px; color: var(--steel); line-height: 1.5; }
+
+  /* ─── DASHBOARD PREVIEW ─── */
+  .dash-section { padding: 80px 24px; background: var(--snow); overflow: hidden; }
+  .dash-frame { max-width: 1000px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(14,51,134,0.1); border: 1px solid var(--cloud); overflow: hidden; }
+  .dash-bar { background: linear-gradient(135deg, var(--brand), var(--brand-dark)); padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
+  .dash-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dash-content { padding: 24px; }
+  .dash-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .dash-metric { background: var(--snow); border-radius: 10px; padding: 14px 16px; border: 1px solid var(--cloud); }
+  .dash-metric .label { font-size: 11px; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .dash-metric .value { font-size: 22px; font-weight: 800; color: var(--ink); }
+  .dash-metric .sub { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 2px; }
+  .dash-table { width: 100%; border-collapse: collapse; }
+  .dash-table th { font-size: 11px; color: var(--brand); text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--cloud); background: var(--snow); }
+  .dash-table td { font-size: 13px; padding: 10px 12px; border-bottom: 1px solid #f1f5f9; color: var(--ink); }
+  .dash-table .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+  .badge-green { background: #DCFCE7; color: #166534; }
+  .badge-amber { background: #FEF3C7; color: #92400E; }
+  .badge-blue { background: #DBEAFE; color: #1E40AF; }
+
+  /* ─── VISION ─── */
+  .vision { padding: 80px 24px; background: linear-gradient(180deg, var(--white) 0%, var(--snow) 100%); }
+  .vision-grid { max-width: 900px; margin: 0 auto; }
+  .vision-timeline { position: relative; padding-left: 40px; }
+  .vision-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--brand), var(--cloud)); }
+  .vision-item { position: relative; margin-bottom: 32px; padding: 20px 24px; background: var(--white); border-radius: 12px; border: 1px solid var(--cloud); }
+  .vision-item::before { content: ''; position: absolute; left: -33px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--brand); }
+  .vision-item.done::before { background: var(--success); box-shadow: 0 0 0 2px var(--success); }
+  .vision-phase { font-size: 10px; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .vision-item h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .vision-item p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+
+  /* ─── PROOF ─── */
+  .proof { padding: 60px 24px; background: var(--brand); color: var(--white); text-align: center; }
+  .proof h2 { font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; margin-bottom: 12px; }
+  .proof > .container > p { font-size: 16px; opacity: 0.8; max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+  .proof-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+  .stat-item { display: flex; flex-direction: column; align-items: center; }
+  .stat-num { font-size: 36px; font-weight: 800; }
+  .stat-label { font-size: 13px; opacity: 0.7; margin-top: 4px; }
 
   /* ─── CTA ─── */
-  .cta-section {
-    padding: 80px 24px;
-    text-align: center; background: var(--white);
-  }
-  .cta-section h2 {
-    font-size: clamp(28px, 4vw, 40px); font-weight: 700;
-    letter-spacing: -1px; margin-bottom: 16px;
-  }
-  .cta-section p {
-    font-size: 16px; color: var(--steel); margin-bottom: 32px;
-    max-width: 480px; margin-left: auto; margin-right: auto;
-  }
+  .cta-section { padding: 80px 24px; text-align: center; background: var(--snow); }
+  .cta-section h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; color: var(--ink); margin-bottom: 12px; }
+  .cta-section p { font-size: 16px; color: var(--steel); max-width: 540px; margin: 0 auto 32px; line-height: 1.6; }
 
   /* ─── FOOTER ─── */
-  footer {
-    padding: 40px 24px;
-    background: var(--ink); color: rgba(255,255,255,0.5);
-    font-size: 13px;
-  }
-  .footer-inner {
-    max-width: 1140px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .footer-inner a { color: rgba(255,255,255,0.6); text-decoration: none; }
-  .footer-inner a:hover { color: var(--white); }
-  .footer-links { display: flex; gap: 24px; }
+  footer { padding: 32px 24px; border-top: 1px solid var(--cloud); background: var(--white); }
+  .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-inner { font-size: 13px; color: var(--steel); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--steel); text-decoration: none; }
+  .footer-links a:hover { color: var(--brand); }
+  .footer-brand { display: flex; align-items: center; gap: 8px; }
+  .footer-brand .mark { width: 24px; height: 24px; background: var(--brand); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
 
-  /* ─── MOBILE ─── */
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
     .hero p { margin-left: auto; margin-right: auto; }
     .hero-cta { justify-content: center; }
-    .hero-visual { margin-top: 40px; }
-    .pdf-float { display: none; }
-    .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+    .trust-row { justify-content: center; flex-wrap: wrap; }
+    .hero-visual { margin-top: 20px; }
+    .pdf-float, .expense-float { display: none; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
     .steps-grid::before { display: none; }
-    .feat-grid { grid-template-columns: 1fr; }
+    .plat-grid { grid-template-columns: 1fr; }
+    .wa-grid { grid-template-columns: 1fr; }
+    .dash-metrics { grid-template-columns: 1fr 1fr; }
     .proof-stats { gap: 32px; }
-    .nav-links .nav-link-text { display: none; }
+    .nav-links .nav-text { display: none; }
+    .footer-inner { flex-direction: column; text-align: center; }
   }
   @media (max-width: 480px) {
-    .phone-frame { width: 240px; }
+    .phone-frame { width: 260px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .dash-metrics { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -383,12 +215,16 @@
           <rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/>
         </svg>
       </div>
-      <span class="logo-text">BlankAI</span>
+      <div class="logo-text-group">
+        <span class="logo-name">Blank<em>AI</em></span>
+        <span class="logo-tag">Field Intelligence</span>
+      </div>
     </a>
     <div class="nav-links">
-      <a href="#how" class="nav-link-text">How It Works</a>
-      <a href="#features" class="nav-link-text">Features</a>
-      <a href="mailto:contact@blankaiwork.com" class="btn btn-primary">Get Early Access</a>
+      <a href="#how" class="nav-text">How It Works</a>
+      <a href="#platform" class="nav-text">Platform</a>
+      <a href="#vision" class="nav-text">Vision</a>
+      <a href="mailto:yosef@blankaiwork.com?subject=BlankAI%20Beta%20Access&body=Hi%20BlankAI%20team%2C%0A%0AI'm%20interested%20in%20the%20beta.%0A%0ACompany%20name%3A%20%0ANumber%20of%20active%20projects%3A%20%0ANumber%20of%20subcontractors%3A%20%0A%0AThanks!" class="btn btn-primary">Get Early Access</a>
     </div>
   </div>
 </nav>
@@ -397,49 +233,86 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge"><span></span> Now in Beta</div>
-      <h1>Daily field reports,<br><em>on autopilot.</em></h1>
-      <p>Your subs send a voice note on WhatsApp. BlankAI turns it into a professional PDF daily report — with crew counts, work completed, delays, and safety notes. Every day, every project.</p>
+      <div class="hero-badge"><span class="dot"></span> Now Accepting Beta GCs</div>
+      <h1>Your subs talk. <br><em>BlankAI listens.</em></h1>
+      <p>Subcontractors send a voice note, text, or receipt photo on WhatsApp — the app they already use. BlankAI transforms it into professional daily reports, expense tracking, and real-time project intelligence. No apps to install. No forms to fill out.</p>
       <div class="hero-cta">
-        <a href="mailto:contact@blankaiwork.com" class="btn btn-primary">Request Beta Access</a>
+        <a href="mailto:yosef@blankaiwork.com?subject=BlankAI%20Beta%20Access" class="btn btn-primary btn-lg">Request Beta Access →</a>
         <a href="#how" class="btn btn-outline">See How It Works</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#22C55E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          WhatsApp native
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#22C55E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          No app download needed
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#22C55E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          English &amp; Spanish
+        </div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="phone-frame">
+        <div class="phone-notch"></div>
         <div class="phone-header">
-          <div class="avatar">🏗️</div>
+          <div class="avatar">
+            <svg width="18" height="18" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
+          </div>
           <div>
             <div class="name">BlankAI</div>
-            <div class="sub">online</div>
+            <div class="sub">Field Intelligence</div>
           </div>
         </div>
         <div class="phone-chat">
-          <div class="chat-bubble chat-outgoing">
-            <div class="voice-note" style="background:transparent;padding:0;">
-              <div style="font-size:18px;">🎙️</div>
-              <div class="voice-wave">
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-              </div>
+          <div class="msg msg-out">
+            <div class="voice">
+              <div style="font-size:16px;">🎙️</div>
+              <div class="voice-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
               <div class="voice-dur">0:47</div>
             </div>
-            <div class="chat-time">4:52 PM</div>
+            <div class="msg-time">4:32 PM</div>
           </div>
-          <div class="chat-bubble chat-incoming">
-            ✅ <strong>Beacon Tower</strong> captured:<br>
-            ✓ Crew &nbsp;✓ Work &nbsp;✓ Safety &nbsp;✓ Weather<br><br>
-            Your report has been sent! 📄
-            <div class="chat-time">4:52 PM</div>
+          <div class="msg msg-in">
+            📋 <strong>Beacon Tower</strong> — Report Summary<br>
+            👷 Crew: 8 (concrete, framing)<br>
+            🔨 Slab pour complete, Grid A-C<br>
+            ⚠️ Rebar delivery 2hr late<br>
+            ☁️ 78°F, Clear<br>
+            🛡️ Toolbox talk: fall protection<br><br>
+            Reply <strong>CONFIRM</strong> to send, or send corrections.
+            <div class="msg-time">4:33 PM</div>
+          </div>
+          <div class="msg msg-out" style="font-size:13px;font-weight:600;">
+            CONFIRM ✓
+            <div class="msg-time">4:33 PM</div>
+          </div>
+          <div class="msg msg-in">
+            ✅ Report #008 sent to your GC!<br>📄 PDF delivered.
+            <div class="msg-time">4:33 PM</div>
           </div>
         </div>
       </div>
       <div class="pdf-float">
         <div class="pdf-icon">PDF</div>
-        <div class="pdf-title">Daily Report — Feb 22</div>
+        <div class="pdf-title">Daily Report #008</div>
         <div class="pdf-sub">Beacon Tower • M. Rodriguez</div>
         <div class="pdf-check">
           <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 110 16A8 8 0 018 0zm3.35 5.35a.5.5 0 00-.7-.7L7 8.29 5.35 6.65a.5.5 0 00-.7.7l2 2a.5.5 0 00.7 0l4-4z"/></svg>
-          Delivered to GC
+          Delivered to GC at 7:00 PM
+        </div>
+      </div>
+      <div class="expense-float">
+        <div class="exp-row">
+          <div class="exp-icon">🧾</div>
+          <div>
+            <div class="exp-vendor">Home Depot</div>
+            <div class="exp-amount">$847.32</div>
+          </div>
+          <div class="badge badge-green" style="font-size:9px;margin-left:8px;">✓ Auto-captured</div>
         </div>
       </div>
     </div>
@@ -448,66 +321,239 @@
 
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
-  <div class="how-inner">
+  <div class="container">
     <div class="section-label">How It Works</div>
-    <div class="section-title">Three steps. Zero paperwork.</div>
-    <div class="section-desc">BlankAI fits into how your subs already work — no apps to download, no forms to fill out, no training required.</div>
+    <div class="section-title">Four steps. Zero paperwork.</div>
+    <div class="section-desc">BlankAI fits into how your subs already work — no apps, no forms, no training. Just WhatsApp.</div>
     <div class="steps-grid">
       <div class="step">
         <div class="step-num">🎙️</div>
         <h3>Sub Sends a Voice Note</h3>
-        <p>At the end of the workday, your sub sends a voice message or text on WhatsApp — crew, work done, weather, safety, delays.</p>
+        <p>Your sub sends a voice message, text, or receipt photo on WhatsApp — anytime during the day. Multiple updates auto-merge.</p>
       </div>
       <div class="step">
         <div class="step-num">🤖</div>
-        <h3>AI Structures the Report</h3>
-        <p>BlankAI transcribes, extracts key data (crew counts, trades, weather), and structures everything into a standardized daily report.</p>
+        <h3>AI Structures Everything</h3>
+        <p>BlankAI transcribes (English, Spanish, Hebrew), extracts crew counts, work items, delays, safety notes, and validates against weather data.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">✅</div>
+        <h3>Sub Reviews &amp; Confirms</h3>
+        <p>At 7 PM, the sub gets a structured summary to review. They confirm, send corrections, or let it auto-send at 7:15 PM.</p>
       </div>
       <div class="step">
         <div class="step-num">📄</div>
-        <h3>You Get a PDF</h3>
-        <p>A professional PDF report lands in your inbox by 7 PM. Every project, every sub, every day — without chasing anyone.</p>
+        <h3>You Get a PDF Report</h3>
+        <p>A branded, professional PDF daily field report lands in your inbox. Every project, every sub, every day — no chasing required.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-  <div class="features-inner">
-    <div class="section-label">Built for GCs</div>
-    <div class="section-title">Everything you need. Nothing you don't.</div>
-    <div class="section-desc">BlankAI handles the reporting so you can focus on running your projects.</div>
-    <div class="feat-grid">
-      <div class="feat-card">
-        <div class="feat-icon" style="background:rgba(14,51,134,0.08);">📱</div>
-        <h4>WhatsApp Native</h4>
-        <p>No new apps. Your subs use WhatsApp — the app they already have on their phone. Voice notes, text, or photos.</p>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon" style="background:rgba(22,163,74,0.08);">📊</div>
+<!-- PLATFORM FEATURES -->
+<section class="platform" id="platform">
+  <div class="container">
+    <div class="section-label">The Platform</div>
+    <div class="section-title">More than daily reports.</div>
+    <div class="section-desc">BlankAI is building the complete field intelligence platform for General Contractors managing $5M–$25M commercial projects.</div>
+    <div class="plat-grid">
+      <div class="plat-card">
+        <div class="plat-icon" style="background:rgba(14,51,134,0.08);">📊</div>
         <h4>Admin Dashboard</h4>
-        <p>Track every sub, every project, every report. See who submitted, who didn't, and what's happening across all your jobs.</p>
+        <p>Track every sub, every project, every report. See who submitted, who didn't, and what's happening across all your jobsites — from your phone, tablet, or desktop.</p>
+        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
       </div>
-      <div class="feat-card">
-        <div class="feat-icon" style="background:rgba(231,76,60,0.08);">⚠️</div>
-        <h4>Delay Tracking</h4>
-        <p>AI automatically detects delays mentioned in reports and logs them with cost estimates based on crew rates and duration.</p>
+      <div class="plat-card">
+        <div class="plat-icon" style="background:rgba(231,76,60,0.08);">⚠️</div>
+        <h4>Automatic Delay Detection</h4>
+        <p>AI detects delays mentioned in reports and logs them with estimated labor cost impact. Track delay patterns by sub, trade, and cause across projects.</p>
+        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
       </div>
-      <div class="feat-card">
-        <div class="feat-icon" style="background:rgba(45,127,249,0.08);">🧾</div>
-        <h4>Expense & Receipt Capture</h4>
-        <p>Subs snap a photo of a receipt on WhatsApp. AI extracts vendor, amount, and category. No more lost receipts.</p>
+      <div class="plat-card">
+        <div class="plat-icon" style="background:rgba(45,127,249,0.08);">🧾</div>
+        <h4>Receipt &amp; Expense Capture</h4>
+        <p>Subs snap a photo of a receipt on WhatsApp. AI extracts vendor, amount, items, and category. No more shoeboxes of crumpled receipts at month-end.</p>
+        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
       </div>
-      <div class="feat-card">
-        <div class="feat-icon" style="background:rgba(139,92,246,0.08);">📑</div>
+      <div class="plat-card">
+        <div class="plat-icon" style="background:rgba(139,92,246,0.08);">📑</div>
         <h4>Invoice Processing</h4>
-        <p>Forward invoices from Gmail. AI reads line items, matches to projects, and tracks payment status automatically.</p>
+        <p>Forward sub invoices to BlankAI. AI reads line items, matches to projects and subs, detects duplicates, and tracks payment status through approval.</p>
+        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
       </div>
-      <div class="feat-card">
-        <div class="feat-icon" style="background:rgba(234,179,8,0.08);">🔔</div>
-        <h4>Smart Reminders</h4>
-        <p>Automated nudges to subs who haven't reported. Configurable cutoff times per project. You never have to chase anyone.</p>
+      <div class="plat-card">
+        <div class="plat-icon" style="background:rgba(234,179,8,0.08);">💬</div>
+        <h4>Ask BlankAI — AI Assistant</h4>
+        <p>"How many delays did Apex cause this month?" Ask any question about your project data in plain English. Get instant, sourced answers from your own reports.</p>
+        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+      </div>
+      <div class="plat-card">
+        <div class="plat-icon" style="background:rgba(14,51,134,0.08);">💰</div>
+        <h4>Project Cost Report</h4>
+        <p>Real-time PNL showing expenses vs. invoices by category, sub billing summary, and invoice aging — the data your bank needs for draw requests.</p>
+        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FLOW -->
+<section class="wa-section">
+  <div class="container">
+    <div class="section-label">WhatsApp Native</div>
+    <div class="section-title">Your subs already know how to use it.</div>
+    <div class="section-desc">No apps to download. No training sessions. No IT support. BlankAI works through WhatsApp — the messaging app 80%+ of South Florida subcontractors already use daily.</div>
+    <div class="wa-grid">
+      <div class="wa-flow">
+        <div class="wa-step">
+          <div class="wa-step-num">1</div>
+          <div>
+            <h4>GC Adds Sub via Portal</h4>
+            <p>Enter the sub's name, phone, and trade. BlankAI sends a WhatsApp welcome message introducing the service — no action needed from the sub.</p>
+          </div>
+        </div>
+        <div class="wa-step">
+          <div class="wa-step-num">2</div>
+          <div>
+            <h4>Sub Reports Throughout the Day</h4>
+            <p>A 30-second voice note at 8 AM about crew, a text at noon about a delay, a photo at 3 PM of delivered materials. All auto-merged into one report.</p>
+          </div>
+        </div>
+        <div class="wa-step">
+          <div class="wa-step-num">3</div>
+          <div>
+            <h4>AI Checks Completeness</h4>
+            <p>BlankAI detects missing fields (crew? safety? weather?) and sends a gentle prompt. Over weeks, report quality improves organically.</p>
+          </div>
+        </div>
+        <div class="wa-step">
+          <div class="wa-step-num">4</div>
+          <div>
+            <h4>Smart Reminders</h4>
+            <p>Only subs who haven't reported get nudged. Subs who already confirmed their report are never nagged. Configurable cutoff times per project.</p>
+          </div>
+        </div>
+        <div class="wa-step">
+          <div class="wa-step-num">5</div>
+          <div>
+            <h4>Multilingual Support</h4>
+            <p>English, Spanish, and Hebrew voice notes are all transcribed and structured into English reports. Your subs speak naturally — AI handles the rest.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--snow);border-radius:14px;padding:20px;border:1px solid var(--cloud);">
+          <div style="font-size:13px;font-weight:700;color:var(--brand);margin-bottom:12px;">📱 What Your Sub Sees</div>
+          <div style="background:#ECE5DD;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;">
+            <div style="background:white;padding:8px 10px;border-radius:8px;font-size:12px;max-width:85%;align-self:flex-start;">
+              👷 Hi Carlos! This is <strong>BlankAI</strong>, your daily reporting assistant for <strong>Beacon Tower</strong>.<br><br>
+              Send me a voice note or text about today's work — crew, progress, safety, delays — and I'll create your daily report automatically.<br><br>
+              📋 Just talk naturally. I'll handle the rest.
+            </div>
+            <div style="background:#DCF8C6;padding:8px 10px;border-radius:8px;font-size:12px;max-width:85%;align-self:flex-end;">
+              🎙️ We poured the slab for building C today, 6 guys on site. Inspector came at 2, passed. Rebar delivery was 2 hours late from Apex...
+            </div>
+            <div style="background:white;padding:8px 10px;border-radius:8px;font-size:12px;max-width:85%;align-self:flex-start;">
+              ✅ <strong>Beacon Tower</strong> — Got it!<br>
+              ✓ Crew ✓ Work ✓ Safety ✓ Delay detected<br>
+              Missing: weather conditions<br><br>
+              Send weather info to complete your report, or it auto-sends at 7:15 PM.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="dash-section">
+  <div class="container">
+    <div class="section-label">Admin Portal</div>
+    <div class="section-title">See everything. Chase nothing.</div>
+    <div class="section-desc">A real-time command center for your projects — accessible from any device, anywhere.</div>
+    <div class="dash-frame">
+      <div class="dash-bar">
+        <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
+        <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
+        <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
+        <span style="color:rgba(255,255,255,0.6);font-size:12px;margin-left:8px;">admin.blankaiwork.com</span>
+      </div>
+      <div class="dash-content">
+        <div class="dash-metrics">
+          <div class="dash-metric">
+            <div class="label">Active Subs</div>
+            <div class="value">12</div>
+            <div class="sub">All reporting</div>
+          </div>
+          <div class="dash-metric">
+            <div class="label">Today's Reports</div>
+            <div class="value">10</div>
+            <div class="sub">83% submission rate</div>
+          </div>
+          <div class="dash-metric">
+            <div class="label">Active Delays</div>
+            <div class="value" style="color:var(--warning);">3</div>
+            <div class="sub" style="color:var(--warning);">Est. $12,400 impact</div>
+          </div>
+          <div class="dash-metric">
+            <div class="label">Month Expenses</div>
+            <div class="value">$21.3K</div>
+            <div class="sub">14 receipts captured</div>
+          </div>
+        </div>
+        <table class="dash-table">
+          <thead><tr><th>Report #</th><th>Sub</th><th>Trade</th><th>Crew</th><th>Status</th><th>Delay</th></tr></thead>
+          <tbody>
+            <tr><td><strong>#008</strong></td><td>Carlos Rivera</td><td>Concrete</td><td>8</td><td><span class="badge badge-green">Complete</span></td><td>—</td></tr>
+            <tr><td><strong>#007</strong></td><td>James Baker</td><td>Framing</td><td>6</td><td><span class="badge badge-green">Complete</span></td><td><span class="badge badge-amber">2hr — rebar</span></td></tr>
+            <tr><td><strong>#006</strong></td><td>Maria Santos</td><td>Electrical</td><td>4</td><td><span class="badge badge-green">Complete</span></td><td>—</td></tr>
+            <tr><td><strong>—</strong></td><td>David Park</td><td>HVAC</td><td>—</td><td><span class="badge badge-amber">Missing</span></td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / ROADMAP -->
+<section class="vision" id="vision">
+  <div class="container">
+    <div class="section-label">The Vision</div>
+    <div class="section-title">From reporting tool to field operations OS.</div>
+    <div class="section-desc">BlankAI is building the system of record for everything that happens on a construction project.</div>
+    <div class="vision-grid">
+      <div class="vision-timeline">
+        <div class="vision-item done">
+          <div class="vision-phase">✅ Live Now</div>
+          <h4>Daily Field Reporting</h4>
+          <p>Voice-to-PDF daily reports via WhatsApp. Auto-merge throughout-the-day updates. Structured data extraction with weather validation, delay detection, and crew tracking.</p>
+        </div>
+        <div class="vision-item done">
+          <div class="vision-phase">✅ Live Now</div>
+          <h4>Financial Capture</h4>
+          <p>Receipt photo OCR, email invoice processing, expense categorization, vendor matching, and project cost reports — bridging the gap between field and back office.</p>
+        </div>
+        <div class="vision-item">
+          <div class="vision-phase">Coming Q2 2026</div>
+          <h4>Photo Documentation</h4>
+          <p>Site photos embedded in daily reports. Progress tracking, issue documentation, and a visual timeline for every project. Evidence for change orders and disputes.</p>
+        </div>
+        <div class="vision-item">
+          <div class="vision-phase">Coming Q2 2026</div>
+          <h4>Weekly Executive Summary</h4>
+          <p>Monday morning email to the project principal: sub compliance scores, delay cost rollup, budget status, and action items. AI-synthesized from the week's field data.</p>
+        </div>
+        <div class="vision-item">
+          <div class="vision-phase">Coming Q3 2026</div>
+          <h4>Change Order Evidence Packages</h4>
+          <p>One-click PDF with all supporting evidence — daily reports, photos, weather records, and delay documentation for a specific date range. GCs recover 5–15% more in change orders.</p>
+        </div>
+        <div class="vision-item">
+          <div class="vision-phase">Coming Q3 2026</div>
+          <h4>Delay Intelligence Dashboard</h4>
+          <p>Aggregate delay patterns across projects and subs. Identify which trades cause the most delays, which subs are unreliable, and where your money is bleeding.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -515,21 +561,25 @@
 
 <!-- SOCIAL PROOF -->
 <section class="proof">
-  <div class="proof-inner">
+  <div class="container">
     <h2>Built by a GC, for GCs.</h2>
-    <p>BlankAI was born from the frustration of chasing daily reports across multiple jobsites. We're building the tool we wish we had — and we're looking for GCs who want to shape the product.</p>
+    <p>BlankAI was born from the frustration of chasing daily reports across multiple jobsites. We're building the tool we wish we had — and we're inviting GCs to shape the product.</p>
     <div class="proof-stats">
       <div class="stat-item">
         <span class="stat-num">&lt; 60s</span>
         <span class="stat-label">Average sub reporting time</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">WhatsApp — no app download</span>
+        <span class="stat-num">0</span>
+        <span class="stat-label">Apps to install</span>
       </div>
       <div class="stat-item">
         <span class="stat-num">7 PM</span>
-        <span class="stat-label">PDF in your inbox daily</span>
+        <span class="stat-label">Professional PDF in your inbox</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Languages supported</span>
       </div>
     </div>
   </div>
@@ -538,23 +588,37 @@
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <h2>Ready to stop chasing reports?</h2>
-  <p>We're onboarding a small group of GCs for our beta. Get early access and help shape BlankAI.</p>
-  <a href="mailto:contact@blankaiwork.com?subject=BlankAI%20Beta%20Access&body=Hi%20BlankAI%20team%2C%0A%0AI'm%20interested%20in%20the%20beta.%20I%20manage%20____%20projects%20with%20____%20subs.%0A%0AThanks!" class="btn btn-primary" style="font-size:16px; padding: 14px 32px;">Request Beta Access →</a>
+  <p>We're onboarding a select group of South Florida GCs for our beta. Free access during the beta period — your feedback shapes the product.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;">
+    <a href="mailto:yosef@blankaiwork.com?subject=BlankAI%20Beta%20Access&body=Hi%20BlankAI%20team%2C%0A%0AI'm%20interested%20in%20the%20beta.%0A%0ACompany%20name%3A%20%0ANumber%20of%20active%20projects%3A%20%0ANumber%20of%20subcontractors%3A%20%0ALocation%3A%20%0A%0AThanks!" class="btn btn-primary btn-lg">Request Beta Access →</a>
+    <a href="https://admin.blankaiwork.com" class="btn btn-outline btn-lg" target="_blank">View Demo Portal</a>
+  </div>
+  <p style="font-size:13px;color:var(--steel);">Target profile: $5M–$25M commercial GC · 5–15 subs on an active project · South Florida</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div>© 2026 BlankAI. All rights reserved.</div>
+    <div class="footer-brand">
+      <div class="mark">
+        <svg width="14" height="14" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
+      </div>
+      <div>
+        <span style="font-weight:700;color:var(--ink);">Blank<span style="color:var(--brand);">AI</span></span>
+        <span style="color:var(--steel);margin-left:8px;">Field Intelligence</span>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--steel);">© 2026 BlankAI. All rights reserved. Miami, FL.</div>
     <div class="footer-links">
-      <a href="mailto:contact@blankaiwork.com">Contact</a>
-      <span>Miami, FL</span>
+      <a href="mailto:yosef@blankaiwork.com">Contact</a>
+      <a href="mailto:yosef@blankaiwork.com">Support</a>
+      <span style="color:var(--cloud);">|</span>
+      <span style="font-size:12px;">yosef@blankaiwork.com</span>
     </div>
   </div>
 </footer>
 
 <script>
-  // Nav scroll effect
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
   });
