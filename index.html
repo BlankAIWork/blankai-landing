@@ -125,6 +125,7 @@ a { color: inherit; text-decoration: none; }
 .hf-in { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 8px; backdrop-filter: blur(4px); }
 .hf-arrow { color: var(--green); font-size: 16px; }
 .hf-out { background: rgba(5,150,105,0.15); border: 1px solid rgba(5,150,105,0.25); color: #6EE7B7; padding: 6px 12px; border-radius: 8px; }
+.hero-anti-crm { font-size: 14px; color: rgba(255,255,255,0.45); font-style: italic; margin-bottom: 28px; max-width: 440px; line-height: 1.5; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
 .hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
 .hero-trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
@@ -432,6 +433,7 @@ a { color: inherit; text-decoration: none; }
   .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
   .hero-content { display: flex; flex-direction: column; align-items: center; }
   .hero-sub { margin-left: auto; margin-right: auto; text-align: center; }
+  .hero-anti-crm { text-align: center; margin-left: auto; margin-right: auto; }
   .hero-ctas { justify-content: center; }
   .hero-trust { justify-content: center; }
   .hero-flows { align-items: center; }
@@ -518,12 +520,13 @@ a { color: inherit; text-decoration: none; }
     <div class="hero-content">
       <div class="hero-badge"><span class="pulse"></span> Now Accepting Beta GCs</div>
       <h1>Reports. Receipts. Invoices. Costs.<br><span class="accent">One Platform. Zero Paperwork.</span></h1>
-      <p class="hero-sub">Your team sends. BlankAI does the rest.</p>
+      <p class="hero-sub">Your subs talk on WhatsApp. You get the full picture. Nobody enters a thing.</p>
       <div class="hero-flows">
         <div class="hero-flow"><span class="hf-in">🎙️ Voice Note</span><span class="hf-arrow">→</span><span class="hf-out">📋 Daily Report</span></div>
         <div class="hero-flow"><span class="hf-in">📸 Receipt Photo</span><span class="hf-arrow">→</span><span class="hf-out">💰 Tracked Expense</span></div>
         <div class="hero-flow"><span class="hf-in">📧 Forwarded Invoice</span><span class="hf-arrow">→</span><span class="hf-out">🧾 Processed &amp; Filed</span></div>
       </div>
+      <p class="hero-anti-crm">This is not another app your team has to fill out. Data flows in through the tools they already use.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary btn-lg">Join the Beta — $39/mo</a>
         <a href="#how" class="btn btn-outline btn-lg">See How It Works</a>
@@ -715,7 +718,7 @@ a { color: inherit; text-decoration: none; }
 <!-- ═══════════ TRUST BAR ═══════════ -->
 <div class="trust-bar">
   <div class="trust-bar-inner">
-    <div class="trust-bar-item"><div class="trust-bar-icon">🏗️</div> Built for General Contractors</div>
+    <div class="trust-bar-item"><div class="trust-bar-icon">✨</div> Zero data entry</div>
     <div class="trust-bar-item"><div class="trust-bar-icon">💬</div> WhatsApp-Native</div>
     <div class="trust-bar-item"><div class="trust-bar-icon">🌐</div> 3 Languages</div>
     <div class="trust-bar-item"><div class="trust-bar-icon">⏱️</div> 15-Minute Setup</div>
@@ -726,8 +729,8 @@ a { color: inherit; text-decoration: none; }
 <!-- ═══════════ FIVE PILLARS ═══════════ -->
 <section class="pillars section-pad" id="pillars">
   <div class="container">
-    <div class="section-label reveal">The Platform</div>
-    <h2 class="section-title reveal">One Platform. Five Problems Solved.</h2>
+    <div class="section-label reveal">What It Does</div>
+    <h2 class="section-title reveal">Five headaches you'll never deal with again.</h2>
     <p class="section-desc reveal">Everything that flows through your project — reports, receipts, invoices, costs, sub performance — captured, organized, and visible in one place.</p>
 
     <div class="pillars-grid">
@@ -842,9 +845,9 @@ a { color: inherit; text-decoration: none; }
 <!-- ═══════════ DASHBOARD SHOWCASE ═══════════ -->
 <section class="showcase section-pad" id="dashboard">
   <div class="container">
-    <div class="section-label reveal">Your Dashboard</div>
+    <div class="section-label reveal">Your Morning Brief</div>
     <h2 class="section-title reveal">Everything Mike needs. One screen.</h2>
-    <p class="section-desc reveal">Your PM opens the portal every morning and sees exactly what needs attention — reports, expenses, invoices, delays, all in one place.</p>
+    <p class="section-desc reveal">Everything flows in overnight through WhatsApp and email. Your PM opens a screen and sees exactly what needs attention — without making a single phone call.</p>
 
     <div class="showcase-grid">
       <div class="showcase-features">
@@ -1093,6 +1096,13 @@ a { color: inherit; text-decoration: none; }
             <td>Yes</td>
             <td>No</td>
           </tr>
+          <tr>
+            <td>Data entry required</td>
+            <td class="highlight" style="font-weight:700;color:var(--green);">None — arrives via WhatsApp &amp; email</td>
+            <td>Manual app input</td>
+            <td>Manual app input</td>
+            <td>Manual spreadsheet input</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -1190,14 +1200,14 @@ a { color: inherit; text-decoration: none; }
     <h2>Set Up in 15 Minutes. Your Subs Send a Voice Note. Your Office Manager Forwards an Invoice. You See Everything.</h2>
     <p>We're onboarding select general contractors for our beta. Your feedback shapes the product.</p>
     <div class="final-cta-btns">
-      <a href="mailto:contact@blankaiwork.com?subject=Beta%20Access%20Request&body=Hi%20contact%2C%0A%0AI%27m%20interested%20in%20BlankAI%20beta%20access.%0A%0ACompany%3A%0ANumber%20of%20active%20projects%3A%0ANumber%20of%20subcontractors%3A%0ALocation%3A" class="btn btn-primary btn-lg">Join the Beta — $39/mo →</a>
+      <a href="mailto:contact@blankaiwork.com?subject=Beta%20Access%20Request&body=Hi%2C%0A%0AI%27m%20interested%20in%20BlankAI%20beta%20access.%0A%0ACompany%3A%0ANumber%20of%20active%20projects%3A%0ANumber%20of%20subcontractors%3A%0ALocation%3A" class="btn btn-primary btn-lg">Join the Beta — $39/mo →</a>
       <a href="https://admin.blankaiwork.com" class="btn btn-outline btn-lg" target="_blank">View Live Portal</a>
     </div>
     <div class="final-cta-sub">No app downloads. No IT department needed. Beta price locked for life.</div>
     <div class="final-cta-contact">
       <span>Prefer to talk? </span>
       <a href="mailto:contact@blankaiwork.com">contact@blankaiwork.com</a>
-      <a href="https://wa.me/13053382072">WhatsApp: (305) 338-2072</a>
+      <a href="tel:+13053382072">+1 (305) 338-2072</a>
     </div>
   </div>
 </section>
