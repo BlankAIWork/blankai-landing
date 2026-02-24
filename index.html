@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BlankAI — AI-Powered Field Intelligence for General Contractors</title>
-<meta name="description" content="BlankAI transforms how General Contractors manage daily field reporting. Subcontractors send voice notes, photos, and receipts on WhatsApp. You get professional PDF reports, expense tracking, and project intelligence — automatically.">
+<meta name="description" content="BlankAI transforms how General Contractors manage daily field reporting. Subcontractors send voice notes on WhatsApp. You get PDF reports, expense tracking, invoice processing, cost reports, and AI project intelligence — automatically.">
 <meta property="og:title" content="BlankAI — Field Intelligence for General Contractors">
-<meta property="og:description" content="Daily field reports, expense tracking, and project intelligence — all from a WhatsApp voice note.">
+<meta property="og:description" content="Daily field reports, expense tracking, invoice processing, and project cost intelligence — all from a WhatsApp voice note.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://blankaiwork.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,19 +15,23 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --brand: #0E3386; --brand-dark: #0A2666; --brand-light: #1A4FBF;
-    --ink: #1B1F23; --steel: #6B7B8D; --cloud: #E2E8F0; --snow: #F5F7F9;
-    --white: #FFFFFF; --success: #22C55E; --warning: #F59E0B; --danger: #EF4444;
+    --ink: #1B1F23; --slate: #3D4752; --steel: #6B7B8D; --fog: #A8B5C1;
+    --cloud: #E2E8F0; --snow: #F5F7F9; --white: #FFFFFF;
+    --success: #059669; --success-bg: #ECFDF5;
+    --warning: #D97706; --warning-bg: #FFFBEB;
+    --danger: #DC2626; --danger-bg: #FEF2F2;
+    --info: #2563EB; --info-bg: #EFF6FF;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', Arial, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
   .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
   /* ─── NAV ─── */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cloud); transition: box-shadow 0.3s; }
-  nav.scrolled { box-shadow: 0 2px 20px rgba(14,51,134,0.08); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(226,232,240,0.6); transition: box-shadow 0.3s; }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(14,51,134,0.07); }
   .nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .logo-group { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-mark { width: 36px; height: 36px; background: linear-gradient(145deg, var(--brand) 0%, var(--brand-dark) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(14,51,134,0.25); }
+  .logo-mark { width: 36px; height: 36px; background: linear-gradient(145deg, var(--brand) 0%, var(--brand-dark) 100%); border-radius: 9px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(14,51,134,0.25); }
   .logo-text-group { display: flex; flex-direction: column; }
   .logo-name { font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; line-height: 1; }
   .logo-name em { font-style: normal; color: var(--brand); }
@@ -43,163 +47,221 @@
   .btn-lg { padding: 14px 32px; font-size: 16px; border-radius: 10px; }
 
   /* ─── HERO ─── */
-  .hero { padding: 130px 24px 80px; background: linear-gradient(168deg, var(--snow) 0%, var(--white) 35%, #EEF2FF 100%); position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(14,51,134,0.06) 0%, transparent 70%); border-radius: 50%; }
-  .hero-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(14,51,134,0.08); color: var(--brand); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px; }
+  .hero { padding: 120px 24px 60px; background: linear-gradient(170deg, var(--snow) 0%, var(--white) 30%, #EEF2FF 100%); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -300px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(14,51,134,0.05) 0%, transparent 70%); border-radius: 50%; }
+  .hero::after { content: ''; position: absolute; bottom: -200px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(14,51,134,0.03) 0%, transparent 70%); border-radius: 50%; }
+  .hero-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; position: relative; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(14,51,134,0.06); color: var(--brand); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 20px; border: 1px solid rgba(14,51,134,0.1); }
   .hero-badge .dot { display: inline-block; width: 6px; height: 6px; background: var(--success); border-radius: 50%; animation: pulse-dot 2s infinite; }
   @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .hero h1 { font-size: clamp(34px, 5vw, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: var(--ink); margin-bottom: 20px; }
-  .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--brand), var(--brand-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .hero p { font-size: 17px; color: var(--steel); line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
-  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
-  .trust-row { display: flex; align-items: center; gap: 20px; font-size: 13px; color: var(--steel); }
-  .trust-item { display: flex; align-items: center; gap: 6px; }
-  .trust-item svg { flex-shrink: 0; }
+  .hero h1 { font-size: clamp(32px, 4.5vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: var(--ink); margin-bottom: 18px; }
+  .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--brand), var(--brand-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 16px; color: var(--steel); line-height: 1.7; margin-bottom: 28px; max-width: 460px; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  .trust-row { display: flex; align-items: center; gap: 20px; font-size: 12.5px; color: var(--steel); }
+  .trust-item { display: flex; align-items: center; gap: 5px; }
+  .trust-check { width: 16px; height: 16px; flex-shrink: 0; }
 
-  /* Phone mockup */
-  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
-  .phone-frame { width: 290px; background: var(--white); border-radius: 32px; padding: 12px; box-shadow: 0 25px 80px rgba(14,51,134,0.15), 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--cloud); position: relative; }
-  .phone-notch { width: 100px; height: 6px; background: var(--cloud); border-radius: 3px; margin: 0 auto 8px; }
-  .phone-header { background: linear-gradient(135deg, #075E54 0%, #128C7E 100%); border-radius: 18px 18px 0 0; padding: 12px 14px; color: var(--white); display: flex; align-items: center; gap: 10px; }
-  .phone-header .avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(145deg, var(--brand), var(--brand-dark)); display: flex; align-items: center; justify-content: center; }
-  .phone-header .name { font-size: 15px; font-weight: 600; }
-  .phone-header .sub { font-size: 11px; opacity: 0.7; }
-  .phone-chat { background: #ECE5DD; padding: 14px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 320px; border-radius: 0 0 18px 18px; }
-  .msg { max-width: 82%; padding: 7px 10px; border-radius: 8px; font-size: 12px; line-height: 1.45; position: relative; }
+  /* ─── HERO COMPOSITE MOCKUP ─── */
+  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; min-height: 480px; }
+  /* Portal dashboard mockup */
+  .portal-mock { width: 460px; background: var(--white); border-radius: 14px; box-shadow: 0 20px 60px rgba(14,51,134,0.12), 0 4px 16px rgba(0,0,0,0.04); border: 1px solid var(--cloud); overflow: hidden; position: relative; z-index: 2; }
+  .portal-topbar { background: var(--white); border-bottom: 1px solid var(--cloud); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; }
+  .portal-topbar .p-logo { font-size: 14px; font-weight: 800; color: var(--ink); }
+  .portal-topbar .p-logo span { color: var(--brand); }
+  .portal-body { display: flex; }
+  .portal-sidebar { width: 52px; background: var(--white); border-right: 1px solid var(--cloud); padding: 8px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .p-nav-dot { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: default; }
+  .p-nav-dot.active { background: rgba(14,51,134,0.08); }
+  .portal-content { flex: 1; padding: 12px; background: var(--snow); min-height: 310px; }
+  .p-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+  .p-metric { background: var(--white); border-radius: 7px; padding: 8px 8px 6px; border: 1px solid var(--cloud); }
+  .p-metric .label { font-size: 7px; color: var(--steel); text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; }
+  .p-metric .val { font-size: 16px; font-weight: 800; color: var(--ink); margin: 1px 0; }
+  .p-metric .sub { font-size: 7px; color: var(--success); font-weight: 600; }
+  .p-metric .sub.warn { color: var(--danger); }
+  /* Mini table */
+  .p-table { background: var(--white); border-radius: 7px; border: 1px solid var(--cloud); overflow: hidden; }
+  .p-table-head { display: flex; padding: 5px 8px; background: var(--snow); border-bottom: 1px solid var(--cloud); gap: 4px; }
+  .p-table-head span { font-size: 7px; color: var(--brand); text-transform: uppercase; letter-spacing: 0.3px; font-weight: 700; }
+  .p-th1 { width: 14%; } .p-th2 { width: 22%; } .p-th3 { width: 18%; } .p-th4 { width: 10%; } .p-th5 { width: 18%; } .p-th6 { width: 18%; }
+  .p-row { display: flex; align-items: center; padding: 5px 8px; border-bottom: 1px solid #f1f5f9; gap: 4px; }
+  .p-row span { font-size: 8px; color: var(--ink); }
+  .p-badge { display: inline-block; font-size: 6.5px; font-weight: 700; padding: 1px 5px; border-radius: 3px; }
+  .bg-green { background: #DCFCE7; color: #166534; }
+  .bg-amber { background: #FEF3C7; color: #92400E; }
+  .bg-blue { background: #DBEAFE; color: #1E40AF; }
+  .bg-red { background: #FEE2E2; color: #991B1B; }
+
+  /* Phone mockup overlapping */
+  .phone-float { position: absolute; bottom: -10px; left: -30px; width: 200px; z-index: 3; }
+  .phone-frame { background: var(--white); border-radius: 22px; padding: 8px; box-shadow: 0 16px 50px rgba(14,51,134,0.18), 0 3px 12px rgba(0,0,0,0.06); border: 1px solid var(--cloud); }
+  .phone-notch { width: 60px; height: 4px; background: var(--cloud); border-radius: 2px; margin: 0 auto 5px; }
+  .phone-header { background: linear-gradient(135deg, #075E54 0%, #128C7E 100%); border-radius: 14px 14px 0 0; padding: 8px 10px; color: var(--white); display: flex; align-items: center; gap: 7px; }
+  .phone-header .avatar { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(145deg, var(--brand), var(--brand-dark)); display: flex; align-items: center; justify-content: center; }
+  .phone-header .name { font-size: 11px; font-weight: 600; }
+  .phone-header .sub-text { font-size: 8px; opacity: 0.7; }
+  .phone-chat { background: #ECE5DD; padding: 8px 6px; display: flex; flex-direction: column; gap: 4px; min-height: 180px; border-radius: 0 0 14px 14px; }
+  .msg { max-width: 85%; padding: 5px 7px; border-radius: 6px; font-size: 8.5px; line-height: 1.4; }
   .msg-in { background: var(--white); align-self: flex-start; border-top-left-radius: 2px; }
   .msg-out { background: #DCF8C6; align-self: flex-end; border-top-right-radius: 2px; }
-  .msg-time { font-size: 9px; color: #999; text-align: right; margin-top: 2px; }
-  .voice { display: flex; align-items: center; gap: 8px; }
-  .voice-wave { display: flex; align-items: flex-end; gap: 2px; height: 18px; }
-  .voice-wave span { width: 3px; background: #075E54; border-radius: 2px; animation: wave 1.2s ease-in-out infinite; }
-  .voice-wave span:nth-child(1){height:7px;animation-delay:0s} .voice-wave span:nth-child(2){height:14px;animation-delay:.1s} .voice-wave span:nth-child(3){height:9px;animation-delay:.2s} .voice-wave span:nth-child(4){height:18px;animation-delay:.3s} .voice-wave span:nth-child(5){height:5px;animation-delay:.4s} .voice-wave span:nth-child(6){height:12px;animation-delay:.5s} .voice-wave span:nth-child(7){height:7px;animation-delay:.6s}
+  .msg-time { font-size: 6.5px; color: #999; text-align: right; margin-top: 1px; }
+  .voice { display: flex; align-items: center; gap: 5px; }
+  .voice-wave { display: flex; align-items: flex-end; gap: 1.5px; height: 12px; }
+  .voice-wave span { width: 2px; background: #075E54; border-radius: 1px; animation: wave 1.2s ease-in-out infinite; }
+  .voice-wave span:nth-child(1){height:5px;animation-delay:0s} .voice-wave span:nth-child(2){height:9px;animation-delay:.1s} .voice-wave span:nth-child(3){height:6px;animation-delay:.2s} .voice-wave span:nth-child(4){height:12px;animation-delay:.3s} .voice-wave span:nth-child(5){height:4px;animation-delay:.4s} .voice-wave span:nth-child(6){height:8px;animation-delay:.5s}
   @keyframes wave { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.4)} }
-  .voice-dur { font-size: 11px; color: var(--steel); }
+  .voice-dur { font-size: 8px; color: var(--steel); }
 
-  .pdf-float { position: absolute; top: 30px; right: -40px; background: var(--white); border-radius: 12px; padding: 14px 18px; box-shadow: 0 8px 30px rgba(14,51,134,0.12), 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--cloud); width: 200px; animation: float 3s ease-in-out infinite; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-  .pdf-float .pdf-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #DC2626, #B91C1C); border-radius: 6px; color: white; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
-  .pdf-float .pdf-title { font-size: 12px; font-weight: 700; color: var(--ink); }
-  .pdf-float .pdf-sub { font-size: 11px; color: var(--steel); margin-top: 2px; }
-  .pdf-float .pdf-check { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--success); font-weight: 600; margin-top: 6px; }
+  /* Floating cards */
+  .float-pdf { position: absolute; top: 10px; right: -20px; background: var(--white); border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 24px rgba(14,51,134,0.1), 0 2px 6px rgba(0,0,0,0.04); border: 1px solid var(--cloud); width: 170px; z-index: 4; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .float-pdf .pdf-icon { width: 26px; height: 26px; background: linear-gradient(135deg, #DC2626, #B91C1C); border-radius: 5px; color: white; font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+  .float-pdf .pdf-title { font-size: 10px; font-weight: 700; color: var(--ink); }
+  .float-pdf .pdf-sub { font-size: 9px; color: var(--steel); margin-top: 2px; }
+  .float-pdf .pdf-check { display: flex; align-items: center; gap: 3px; font-size: 8px; color: var(--success); font-weight: 600; margin-top: 4px; }
 
-  .expense-float { position: absolute; bottom: 20px; left: -30px; background: var(--white); border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 24px rgba(14,51,134,0.1); border: 1px solid var(--cloud); animation: float 3.5s ease-in-out infinite; animation-delay: 1s; }
-  .expense-float .exp-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
-  .expense-float .exp-icon { width: 24px; height: 24px; background: rgba(14,51,134,0.08); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
-  .expense-float .exp-vendor { font-weight: 600; color: var(--ink); }
-  .expense-float .exp-amount { color: var(--brand); font-weight: 700; }
+  .float-expense { position: absolute; bottom: 60px; right: -10px; background: var(--white); border-radius: 8px; padding: 8px 10px; box-shadow: 0 4px 18px rgba(14,51,134,0.08); border: 1px solid var(--cloud); z-index: 4; animation: float 3.5s ease-in-out infinite; animation-delay: 1.2s; }
+  .exp-row { display: flex; align-items: center; gap: 6px; font-size: 9px; }
+  .exp-icon { width: 20px; height: 20px; background: rgba(14,51,134,0.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .exp-vendor { font-weight: 600; color: var(--ink); font-size: 9px; }
+  .exp-amount { color: var(--brand); font-weight: 700; font-size: 9px; }
+
+  /* ─── SOCIAL PROOF LOGOS ─── */
+  .proof-bar { padding: 40px 24px; background: var(--white); border-top: 1px solid var(--cloud); border-bottom: 1px solid var(--cloud); }
+  .proof-bar-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+  .proof-bar-inner .proof-tag { font-size: 11px; font-weight: 600; color: var(--fog); text-transform: uppercase; letter-spacing: 1px; }
+  .proof-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--steel); font-weight: 500; }
+  .proof-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 
   /* ─── SECTION SHARED ─── */
   .section-label { font-size: 12px; font-weight: 700; color: var(--brand); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; margin-bottom: 8px; }
-  .section-title { font-size: clamp(28px, 4vw, 38px); font-weight: 800; text-align: center; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 12px; }
-  .section-desc { font-size: 16px; color: var(--steel); text-align: center; max-width: 640px; margin: 0 auto 48px; line-height: 1.6; }
+  .section-title { font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; text-align: center; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 10px; }
+  .section-desc { font-size: 15px; color: var(--steel); text-align: center; max-width: 600px; margin: 0 auto 44px; line-height: 1.6; }
 
   /* ─── HOW IT WORKS ─── */
-  .how { padding: 80px 24px; background: var(--white); }
-  .steps-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; position: relative; }
-  .steps-grid::before { content: ''; position: absolute; top: 36px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, transparent, var(--cloud), var(--cloud), transparent); z-index: 0; }
+  .how { padding: 72px 24px; background: var(--white); }
+  .steps-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; position: relative; }
+  .steps-grid::before { content: ''; position: absolute; top: 34px; left: 14%; right: 14%; height: 2px; background: linear-gradient(90deg, transparent, var(--cloud), var(--cloud), transparent); z-index: 0; }
   .step { text-align: center; position: relative; z-index: 1; }
-  .step-num { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; background: var(--white); border: 2px solid var(--cloud); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-  .step h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-  .step p { font-size: 13px; color: var(--steel); line-height: 1.5; }
+  .step-num { width: 68px; height: 68px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 14px; background: var(--white); border: 2px solid var(--cloud); box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: all 0.3s; }
+  .step:hover .step-num { border-color: var(--brand); box-shadow: 0 4px 16px rgba(14,51,134,0.1); }
+  .step h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .step p { font-size: 12.5px; color: var(--steel); line-height: 1.5; }
 
   /* ─── PLATFORM ─── */
-  .platform { padding: 80px 24px; background: var(--snow); }
-  .plat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-  .plat-card { background: var(--white); border-radius: 16px; padding: 28px 24px; border: 1px solid var(--cloud); transition: all 0.3s; }
-  .plat-card:hover { box-shadow: 0 8px 30px rgba(14,51,134,0.08); transform: translateY(-2px); }
-  .plat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
-  .plat-card h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-  .plat-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
-  .plat-card .plat-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-top: 10px; }
-
-  /* ─── WHATSAPP SHOWCASE ─── */
-  .wa-section { padding: 80px 24px; background: var(--white); }
-  .wa-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .wa-flow { display: flex; flex-direction: column; gap: 16px; }
-  .wa-step { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 12px; background: var(--snow); border: 1px solid transparent; transition: all 0.3s; }
-  .wa-step:hover { border-color: var(--cloud); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
-  .wa-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
-  .wa-step h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-  .wa-step p { font-size: 13px; color: var(--steel); line-height: 1.5; }
+  .platform { padding: 72px 24px; background: var(--snow); }
+  .plat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+  .plat-card { background: var(--white); border-radius: 14px; padding: 24px 22px; border: 1px solid var(--cloud); transition: all 0.3s; position: relative; }
+  .plat-card:hover { box-shadow: 0 8px 28px rgba(14,51,134,0.07); transform: translateY(-2px); border-color: rgba(14,51,134,0.15); }
+  .plat-card-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+  .plat-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .plat-card h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .plat-card p { font-size: 12.5px; color: var(--steel); line-height: 1.55; }
+  .plat-badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; }
 
   /* ─── DASHBOARD PREVIEW ─── */
-  .dash-section { padding: 80px 24px; background: var(--snow); overflow: hidden; }
-  .dash-frame { max-width: 1000px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(14,51,134,0.1); border: 1px solid var(--cloud); overflow: hidden; }
-  .dash-bar { background: linear-gradient(135deg, var(--brand), var(--brand-dark)); padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
-  .dash-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dash-content { padding: 24px; }
-  .dash-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-  .dash-metric { background: var(--snow); border-radius: 10px; padding: 14px 16px; border: 1px solid var(--cloud); }
-  .dash-metric .label { font-size: 11px; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .dash-metric .value { font-size: 22px; font-weight: 800; color: var(--ink); }
-  .dash-metric .sub { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 2px; }
-  .dash-table { width: 100%; border-collapse: collapse; }
-  .dash-table th { font-size: 11px; color: var(--brand); text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--cloud); background: var(--snow); }
-  .dash-table td { font-size: 13px; padding: 10px 12px; border-bottom: 1px solid #f1f5f9; color: var(--ink); }
-  .dash-table .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
-  .badge-green { background: #DCFCE7; color: #166534; }
-  .badge-amber { background: #FEF3C7; color: #92400E; }
-  .badge-blue { background: #DBEAFE; color: #1E40AF; }
+  .dash-section { padding: 72px 24px; background: var(--white); overflow: hidden; }
+  .dash-showcase { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
+  .dash-features { display: flex; flex-direction: column; gap: 14px; }
+  .dash-feat { padding: 14px 18px; border-radius: 10px; border: 1px solid transparent; transition: all 0.3s; cursor: default; }
+  .dash-feat:hover { background: var(--snow); border-color: var(--cloud); }
+  .dash-feat h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .dash-feat p { font-size: 12.5px; color: var(--steel); line-height: 1.5; }
+  .dash-frame { background: var(--white); border-radius: 14px; box-shadow: 0 16px 48px rgba(14,51,134,0.1); border: 1px solid var(--cloud); overflow: hidden; }
+  .dash-bar { background: linear-gradient(135deg, var(--brand), var(--brand-dark)); padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+  .dash-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dash-inner { padding: 16px; background: var(--snow); }
+
+  /* Financial preview */
+  .fin-tabs { display: flex; gap: 2px; margin-bottom: 10px; }
+  .fin-tab { padding: 5px 12px; font-size: 9px; font-weight: 700; border-radius: 6px 6px 0 0; cursor: default; }
+  .fin-tab.active { background: var(--white); color: var(--brand); border: 1px solid var(--cloud); border-bottom: 1px solid var(--white); }
+  .fin-tab.inactive { background: transparent; color: var(--steel); }
+  .fin-table { background: var(--white); border-radius: 0 8px 8px 8px; border: 1px solid var(--cloud); overflow: hidden; }
+  .fin-head { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr; padding: 6px 10px; background: var(--snow); border-bottom: 1px solid var(--cloud); }
+  .fin-head span { font-size: 7px; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: 0.3px; }
+  .fin-row { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr; padding: 7px 10px; border-bottom: 1px solid #f1f5f9; align-items: center; transition: background 0.15s; }
+  .fin-row:hover { background: var(--snow); }
+  .fin-row span { font-size: 8.5px; color: var(--ink); }
+  .fin-row .vendor { font-weight: 600; }
+
+  /* ─── WHATSAPP SHOWCASE ─── */
+  .wa-section { padding: 72px 24px; background: var(--snow); }
+  .wa-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .wa-flow { display: flex; flex-direction: column; gap: 12px; }
+  .wa-step { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 10px; background: var(--white); border: 1px solid transparent; transition: all 0.3s; }
+  .wa-step:hover { border-color: var(--cloud); box-shadow: 0 4px 14px rgba(0,0,0,0.03); }
+  .wa-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .wa-step h4 { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .wa-step p { font-size: 12px; color: var(--steel); line-height: 1.5; }
+  .wa-phone-large { display: flex; justify-content: center; }
+  .wa-phone-large .phone-frame { width: 260px; }
+  .wa-phone-large .phone-chat { min-height: 260px; }
 
   /* ─── VISION ─── */
-  .vision { padding: 80px 24px; background: linear-gradient(180deg, var(--white) 0%, var(--snow) 100%); }
+  .vision { padding: 72px 24px; background: var(--white); }
   .vision-grid { max-width: 900px; margin: 0 auto; }
-  .vision-timeline { position: relative; padding-left: 40px; }
-  .vision-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--brand), var(--cloud)); }
-  .vision-item { position: relative; margin-bottom: 32px; padding: 20px 24px; background: var(--white); border-radius: 12px; border: 1px solid var(--cloud); }
-  .vision-item::before { content: ''; position: absolute; left: -33px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--brand); }
+  .vision-timeline { position: relative; padding-left: 36px; }
+  .vision-timeline::before { content: ''; position: absolute; left: 13px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--brand), var(--cloud)); }
+  .vision-item { position: relative; margin-bottom: 24px; padding: 16px 20px; background: var(--white); border-radius: 10px; border: 1px solid var(--cloud); transition: all 0.3s; }
+  .vision-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .vision-item::before { content: ''; position: absolute; left: -30px; top: 20px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--brand); }
   .vision-item.done::before { background: var(--success); box-shadow: 0 0 0 2px var(--success); }
-  .vision-phase { font-size: 10px; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .vision-item h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-  .vision-item p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+  .vision-phase { font-size: 9px; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .vision-item.done .vision-phase { color: var(--success); }
+  .vision-item h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .vision-item p { font-size: 12.5px; color: var(--steel); line-height: 1.55; }
 
   /* ─── PROOF ─── */
-  .proof { padding: 60px 24px; background: var(--brand); color: var(--white); text-align: center; }
-  .proof h2 { font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; margin-bottom: 12px; }
-  .proof > .container > p { font-size: 16px; opacity: 0.8; max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
-  .proof-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+  .proof { padding: 56px 24px; background: var(--brand); color: var(--white); text-align: center; position: relative; overflow: hidden; }
+  .proof::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%); border-radius: 50%; }
+  .proof h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; margin-bottom: 10px; position: relative; }
+  .proof > .container > p { font-size: 15px; opacity: 0.8; max-width: 560px; margin: 0 auto 36px; line-height: 1.6; }
+  .proof-stats { display: flex; justify-content: center; gap: 44px; flex-wrap: wrap; }
   .stat-item { display: flex; flex-direction: column; align-items: center; }
-  .stat-num { font-size: 36px; font-weight: 800; }
-  .stat-label { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+  .stat-num { font-size: 32px; font-weight: 800; }
+  .stat-label { font-size: 12px; opacity: 0.65; margin-top: 2px; }
 
   /* ─── CTA ─── */
-  .cta-section { padding: 80px 24px; text-align: center; background: var(--snow); }
-  .cta-section h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; color: var(--ink); margin-bottom: 12px; }
-  .cta-section p { font-size: 16px; color: var(--steel); max-width: 540px; margin: 0 auto 32px; line-height: 1.6; }
+  .cta-section { padding: 72px 24px; text-align: center; background: var(--snow); }
+  .cta-section h2 { font-size: clamp(24px, 3.5vw, 34px); font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+  .cta-section p { font-size: 15px; color: var(--steel); max-width: 520px; margin: 0 auto 28px; line-height: 1.6; }
 
   /* ─── FOOTER ─── */
-  footer { padding: 32px 24px; border-top: 1px solid var(--cloud); background: var(--white); }
-  .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  .footer-inner { font-size: 13px; color: var(--steel); }
-  .footer-links { display: flex; gap: 20px; }
-  .footer-links a { color: var(--steel); text-decoration: none; }
+  footer { padding: 28px 24px; border-top: 1px solid var(--cloud); background: var(--white); }
+  .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--steel); }
+  .footer-links { display: flex; gap: 18px; }
+  .footer-links a { color: var(--steel); text-decoration: none; font-size: 12px; }
   .footer-links a:hover { color: var(--brand); }
   .footer-brand { display: flex; align-items: center; gap: 8px; }
-  .footer-brand .mark { width: 24px; height: 24px; background: var(--brand); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .footer-brand .mark { width: 22px; height: 22px; background: var(--brand); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 32px; }
     .hero p { margin-left: auto; margin-right: auto; }
     .hero-cta { justify-content: center; }
     .trust-row { justify-content: center; flex-wrap: wrap; }
-    .hero-visual { margin-top: 20px; }
-    .pdf-float, .expense-float { display: none; }
+    .hero-visual { min-height: 340px; margin-top: 12px; }
+    .portal-mock { width: 320px; }
+    .phone-float { display: none; }
+    .float-pdf, .float-expense { display: none; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
     .steps-grid::before { display: none; }
     .plat-grid { grid-template-columns: 1fr; }
     .wa-grid { grid-template-columns: 1fr; }
-    .dash-metrics { grid-template-columns: 1fr 1fr; }
-    .proof-stats { gap: 32px; }
+    .wa-phone-large { order: -1; }
+    .dash-showcase { grid-template-columns: 1fr; }
+    .proof-stats { gap: 28px; }
     .nav-links .nav-text { display: none; }
     .footer-inner { flex-direction: column; text-align: center; }
+    .proof-bar-inner { gap: 20px; }
   }
   @media (max-width: 480px) {
-    .phone-frame { width: 260px; }
+    .portal-mock { width: 280px; }
+    .p-metrics { grid-template-columns: 1fr 1fr; }
     .steps-grid { grid-template-columns: 1fr; }
-    .dash-metrics { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -223,8 +285,9 @@
     <div class="nav-links">
       <a href="#how" class="nav-text">How It Works</a>
       <a href="#platform" class="nav-text">Platform</a>
+      <a href="#dashboard" class="nav-text">Dashboard</a>
       <a href="#vision" class="nav-text">Vision</a>
-      <a href="mailto:yosef@blankaiwork.com?subject=BlankAI%20Beta%20Access&body=Hi%20BlankAI%20team%2C%0A%0AI'm%20interested%20in%20the%20beta.%0A%0ACompany%20name%3A%20%0ANumber%20of%20active%20projects%3A%20%0ANumber%20of%20subcontractors%3A%20%0A%0AThanks!" class="btn btn-primary">Get Early Access</a>
+      <a href="https://admin.blankaiwork.com" class="btn btn-primary" target="_blank">View Live Portal</a>
     </div>
   </div>
 </nav>
@@ -234,164 +297,381 @@
   <div class="hero-inner">
     <div>
       <div class="hero-badge"><span class="dot"></span> Now Accepting Beta GCs</div>
-      <h1>Your subs talk. <br><em>BlankAI listens.</em></h1>
-      <p>Subcontractors send a voice note, text, or receipt photo on WhatsApp — the app they already use. BlankAI transforms it into professional daily reports, expense tracking, and real-time project intelligence. No apps to install. No forms to fill out.</p>
+      <h1>Your subs talk.<br><em>BlankAI builds your back office.</em></h1>
+      <p>Subcontractors send a voice note or receipt photo on WhatsApp. BlankAI turns it into daily field reports, categorized expenses, processed invoices, and a real-time cost report for your bank draw — automatically.</p>
       <div class="hero-cta">
-        <a href="mailto:yosef@blankaiwork.com?subject=BlankAI%20Beta%20Access" class="btn btn-primary btn-lg">Request Beta Access →</a>
+        <a href="mailto:yosi@blankaiwork.com?subject=Beta%20Access%20Request" class="btn btn-primary btn-lg">Request Beta Access →</a>
         <a href="#how" class="btn btn-outline">See How It Works</a>
       </div>
       <div class="trust-row">
         <div class="trust-item">
-          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#22C55E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="trust-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#059669" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           WhatsApp native
         </div>
         <div class="trust-item">
-          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#22C55E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          No app download needed
+          <svg class="trust-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#059669" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          No app download
         </div>
         <div class="trust-item">
-          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#22C55E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          English &amp; Spanish
+          <svg class="trust-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#059669" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          English, Spanish &amp; Hebrew
         </div>
       </div>
     </div>
+
+    <!-- ★ COMPOSITE MOCKUP: Portal + Phone + Floating cards -->
     <div class="hero-visual">
-      <div class="phone-frame">
-        <div class="phone-notch"></div>
-        <div class="phone-header">
-          <div class="avatar">
-            <svg width="18" height="18" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
-          </div>
-          <div>
-            <div class="name">BlankAI</div>
-            <div class="sub">Field Intelligence</div>
+      <!-- Portal Dashboard mockup -->
+      <div class="portal-mock">
+        <div class="portal-topbar">
+          <div class="p-logo">Blank<span>AI</span></div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:8px;color:var(--steel);">Feb 23, 2026</span>
+            <div style="position:relative;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--steel)"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+              <span style="position:absolute;top:-2px;right:-2px;width:5px;height:5px;border-radius:50%;background:var(--danger);border:1px solid white;"></span>
+            </div>
           </div>
         </div>
-        <div class="phone-chat">
-          <div class="msg msg-out">
-            <div class="voice">
-              <div style="font-size:16px;">🎙️</div>
-              <div class="voice-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="voice-dur">0:47</div>
+        <div class="portal-body">
+          <div class="portal-sidebar">
+            <div class="p-nav-dot active">📊</div>
+            <div class="p-nav-dot">👷</div>
+            <div class="p-nav-dot">📋</div>
+            <div class="p-nav-dot">🏗️</div>
+            <div class="p-nav-dot">⚠️</div>
+            <div class="p-nav-dot">💳</div>
+            <div class="p-nav-dot">📈</div>
+          </div>
+          <div class="portal-content">
+            <div class="p-metrics">
+              <div class="p-metric">
+                <div class="label">Total Crew</div>
+                <div class="val">47</div>
+                <div class="sub">across 8 subs</div>
+              </div>
+              <div class="p-metric">
+                <div class="label">Reports</div>
+                <div class="val">8</div>
+                <div class="sub">of 12 today</div>
+              </div>
+              <div class="p-metric">
+                <div class="label">Pending</div>
+                <div class="val">$4.2k</div>
+                <div class="sub warn">3 to review</div>
+              </div>
+              <div class="p-metric">
+                <div class="label">Delays</div>
+                <div class="val">2</div>
+                <div class="sub warn">flagged today</div>
+              </div>
             </div>
-            <div class="msg-time">4:32 PM</div>
-          </div>
-          <div class="msg msg-in">
-            📋 <strong>Beacon Tower</strong> — Report Summary<br>
-            👷 Crew: 8 (concrete, framing)<br>
-            🔨 Slab pour complete, Grid A-C<br>
-            ⚠️ Rebar delivery 2hr late<br>
-            ☁️ 78°F, Clear<br>
-            🛡️ Toolbox talk: fall protection<br><br>
-            Reply <strong>CONFIRM</strong> to send, or send corrections.
-            <div class="msg-time">4:33 PM</div>
-          </div>
-          <div class="msg msg-out" style="font-size:13px;font-weight:600;">
-            CONFIRM ✓
-            <div class="msg-time">4:33 PM</div>
-          </div>
-          <div class="msg msg-in">
-            ✅ Report #008 sent to your GC!<br>📄 PDF delivered.
-            <div class="msg-time">4:33 PM</div>
+            <div class="p-table">
+              <div class="p-table-head">
+                <span class="p-th1">Report</span>
+                <span class="p-th2">Subcontractor</span>
+                <span class="p-th3">Trade</span>
+                <span class="p-th4">Crew</span>
+                <span class="p-th5">Status</span>
+                <span class="p-th6">Delays</span>
+              </div>
+              <div class="p-row">
+                <span class="p-th1" style="font-weight:700;">#008</span>
+                <span class="p-th2">Carlos Rodriguez</span>
+                <span class="p-th3">Concrete</span>
+                <span class="p-th4">6</span>
+                <span class="p-th5"><span class="p-badge bg-green">Complete</span></span>
+                <span class="p-th6" style="color:var(--danger);font-weight:600;">Rebar 2hr late</span>
+              </div>
+              <div class="p-row">
+                <span class="p-th1" style="font-weight:700;">#007</span>
+                <span class="p-th2">Metro Electric</span>
+                <span class="p-th3">Electrical</span>
+                <span class="p-th4">4</span>
+                <span class="p-th5"><span class="p-badge bg-green">Complete</span></span>
+                <span class="p-th6">—</span>
+              </div>
+              <div class="p-row">
+                <span class="p-th1" style="font-weight:700;">#006</span>
+                <span class="p-th2">Apex Plumbing</span>
+                <span class="p-th3">Plumbing</span>
+                <span class="p-th4">3</span>
+                <span class="p-th5"><span class="p-badge bg-blue">Partial</span></span>
+                <span class="p-th6">—</span>
+              </div>
+              <div class="p-row">
+                <span class="p-th1" style="font-weight:700;">—</span>
+                <span class="p-th2">David Park</span>
+                <span class="p-th3">HVAC</span>
+                <span class="p-th4">—</span>
+                <span class="p-th5"><span class="p-badge bg-amber">Missing</span></span>
+                <span class="p-th6">—</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="pdf-float">
+
+      <!-- Phone overlapping bottom-left -->
+      <div class="phone-float">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-header">
+            <div class="avatar">
+              <svg width="12" height="12" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
+            </div>
+            <div>
+              <div class="name">BlankAI</div>
+              <div class="sub-text">Field Intelligence</div>
+            </div>
+          </div>
+          <div class="phone-chat">
+            <div class="msg msg-out">
+              <div class="voice">
+                <span style="font-size:12px;">🎙️</span>
+                <div class="voice-wave"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="voice-dur">0:47</div>
+              </div>
+              <div class="msg-time">4:32 PM</div>
+            </div>
+            <div class="msg msg-in">
+              📋 <strong>Beacon Tower</strong><br>
+              👷 Crew: 8<br>
+              🔨 Slab pour complete<br>
+              ⚠️ Rebar delivery 2hr late<br>
+              <div class="msg-time">4:33 PM</div>
+            </div>
+            <div class="msg msg-out" style="font-size:9px;font-weight:600;">
+              CONFIRM ✓
+              <div class="msg-time">4:33 PM</div>
+            </div>
+            <div class="msg msg-in">
+              ✅ Report #008 sent!<br>📄 PDF delivered.
+              <div class="msg-time">4:33 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating PDF card -->
+      <div class="float-pdf">
         <div class="pdf-icon">PDF</div>
         <div class="pdf-title">Daily Report #008</div>
-        <div class="pdf-sub">Beacon Tower • M. Rodriguez</div>
+        <div class="pdf-sub">Beacon Tower • Rodriguez</div>
         <div class="pdf-check">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 110 16A8 8 0 018 0zm3.35 5.35a.5.5 0 00-.7-.7L7 8.29 5.35 6.65a.5.5 0 00-.7.7l2 2a.5.5 0 00.7 0l4-4z"/></svg>
-          Delivered to GC at 7:00 PM
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 110 16A8 8 0 018 0zm3.35 5.35a.5.5 0 00-.7-.7L7 8.29 5.35 6.65a.5.5 0 00-.7.7l2 2a.5.5 0 00.7 0l4-4z"/></svg>
+          Delivered at 7:00 PM
         </div>
       </div>
-      <div class="expense-float">
+
+      <!-- Floating expense card -->
+      <div class="float-expense">
         <div class="exp-row">
           <div class="exp-icon">🧾</div>
           <div>
             <div class="exp-vendor">Home Depot</div>
             <div class="exp-amount">$847.32</div>
           </div>
-          <div class="badge badge-green" style="font-size:9px;margin-left:8px;">✓ Auto-captured</div>
+          <span class="p-badge bg-green" style="font-size:7px;margin-left:6px;">✓ Captured</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- POWERED BY -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <span class="proof-tag">Powered by</span>
+    <div class="proof-item"><div class="proof-icon" style="background:#25D366;color:white;border-radius:50%;font-size:16px;">💬</div> WhatsApp Business</div>
+    <div class="proof-item"><div class="proof-icon" style="background:rgba(14,51,134,0.06);">🤖</div> Claude AI</div>
+    <div class="proof-item"><div class="proof-icon" style="background:rgba(14,51,134,0.06);">🔒</div> Supabase</div>
+    <div class="proof-item"><div class="proof-icon" style="background:rgba(14,51,134,0.06);">⚡</div> n8n Automation</div>
+  </div>
+</div>
+
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="container">
     <div class="section-label">How It Works</div>
     <div class="section-title">Four steps. Zero paperwork.</div>
-    <div class="section-desc">BlankAI fits into how your subs already work — no apps, no forms, no training. Just WhatsApp.</div>
+    <div class="section-desc">BlankAI fits into how your subs already work — no apps, no forms, no training.</div>
     <div class="steps-grid">
       <div class="step">
         <div class="step-num">🎙️</div>
         <h3>Sub Sends a Voice Note</h3>
-        <p>Your sub sends a voice message, text, or receipt photo on WhatsApp — anytime during the day. Multiple updates auto-merge.</p>
+        <p>A 30-second voice message, text, or receipt photo on WhatsApp — anytime during the day. Multiple updates auto-merge.</p>
       </div>
       <div class="step">
         <div class="step-num">🤖</div>
         <h3>AI Structures Everything</h3>
-        <p>BlankAI transcribes (English, Spanish, Hebrew), extracts crew counts, work items, delays, safety notes, and validates against weather data.</p>
+        <p>Transcribes (English, Spanish, Hebrew), extracts crew, work items, delays, safety, expenses — validates against weather data.</p>
       </div>
       <div class="step">
         <div class="step-num">✅</div>
         <h3>Sub Reviews &amp; Confirms</h3>
-        <p>At 7 PM, the sub gets a structured summary to review. They confirm, send corrections, or let it auto-send at 7:15 PM.</p>
+        <p>At 7 PM, a structured summary to review. Confirm, send corrections, or auto-send at 7:15 PM. Completeness checks built in.</p>
       </div>
       <div class="step">
-        <div class="step-num">📄</div>
-        <h3>You Get a PDF Report</h3>
-        <p>A branded, professional PDF daily field report lands in your inbox. Every project, every sub, every day — no chasing required.</p>
+        <div class="step-num">📊</div>
+        <h3>GC Gets Full Intelligence</h3>
+        <p>Branded PDF report + live dashboard with crew tracking, delay detection, expense categorization, and cost reports for the bank.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PLATFORM FEATURES -->
+<!-- PLATFORM -->
 <section class="platform" id="platform">
   <div class="container">
     <div class="section-label">The Platform</div>
-    <div class="section-title">More than daily reports.</div>
-    <div class="section-desc">BlankAI is building the complete field intelligence platform for General Contractors managing $5M–$25M commercial projects.</div>
+    <div class="section-title">Everything your back office needs. Already built.</div>
+    <div class="section-desc">Six live modules working together — from field capture to bank-ready financials.</div>
     <div class="plat-grid">
       <div class="plat-card">
-        <div class="plat-icon" style="background:rgba(14,51,134,0.08);">📊</div>
-        <h4>Admin Dashboard</h4>
-        <p>Track every sub, every project, every report. See who submitted, who didn't, and what's happening across all your jobsites — from your phone, tablet, or desktop.</p>
-        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+        <div class="plat-card-head">
+          <div class="plat-icon" style="background:rgba(14,51,134,0.06);">📊</div>
+          <span class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</span>
+        </div>
+        <h4>Morning Brief Dashboard</h4>
+        <p>Open the portal, see the truth. Who reported, who didn't, active delays, missing subs, pending expenses — one screen for your morning coffee.</p>
       </div>
       <div class="plat-card">
-        <div class="plat-icon" style="background:rgba(231,76,60,0.08);">⚠️</div>
+        <div class="plat-card-head">
+          <div class="plat-icon" style="background:rgba(220,38,38,0.06);">⚠️</div>
+          <span class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</span>
+        </div>
         <h4>Automatic Delay Detection</h4>
-        <p>AI detects delays mentioned in reports and logs them with estimated labor cost impact. Track delay patterns by sub, trade, and cause across projects.</p>
-        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+        <p>AI detects delays mentioned in voice notes and logs them with estimated labor cost impact. Track patterns by sub, trade, and cause.</p>
       </div>
       <div class="plat-card">
-        <div class="plat-icon" style="background:rgba(45,127,249,0.08);">🧾</div>
+        <div class="plat-card-head">
+          <div class="plat-icon" style="background:rgba(45,127,249,0.06);">🧾</div>
+          <span class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</span>
+        </div>
         <h4>Receipt &amp; Expense Capture</h4>
-        <p>Subs snap a photo of a receipt on WhatsApp. AI extracts vendor, amount, items, and category. No more shoeboxes of crumpled receipts at month-end.</p>
-        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+        <p>Subs snap a receipt photo on WhatsApp. AI extracts vendor, amount, items, and category. Approve, reject, or request info — one click.</p>
       </div>
       <div class="plat-card">
-        <div class="plat-icon" style="background:rgba(139,92,246,0.08);">📑</div>
+        <div class="plat-card-head">
+          <div class="plat-icon" style="background:rgba(139,92,246,0.06);">📑</div>
+          <span class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</span>
+        </div>
         <h4>Invoice Processing</h4>
-        <p>Forward sub invoices to BlankAI. AI reads line items, matches to projects and subs, detects duplicates, and tracks payment status through approval.</p>
-        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+        <p>Forward invoices to BlankAI. AI reads line items, matches to projects and subs, detects duplicates, and tracks through approval to payment.</p>
       </div>
       <div class="plat-card">
-        <div class="plat-icon" style="background:rgba(234,179,8,0.08);">💬</div>
+        <div class="plat-card-head">
+          <div class="plat-icon" style="background:rgba(234,179,8,0.06);">💬</div>
+          <span class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</span>
+        </div>
         <h4>Ask BlankAI — AI Assistant</h4>
-        <p>"How many delays did Apex cause this month?" Ask any question about your project data in plain English. Get instant, sourced answers from your own reports.</p>
-        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+        <p>"How many delays did Apex cause this month?" Ask any question about your project data in plain English. Instant, sourced answers from your own reports.</p>
       </div>
       <div class="plat-card">
-        <div class="plat-icon" style="background:rgba(14,51,134,0.08);">💰</div>
-        <h4>Project Cost Report</h4>
-        <p>Real-time PNL showing expenses vs. invoices by category, sub billing summary, and invoice aging — the data your bank needs for draw requests.</p>
-        <div class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</div>
+        <div class="plat-card-head">
+          <div class="plat-icon" style="background:rgba(14,51,134,0.06);">💰</div>
+          <span class="plat-badge" style="background:#DCFCE7;color:#166534;">Live</span>
+        </div>
+        <h4>Cost Report for Bank Draws</h4>
+        <p>Real-time P&amp;L: expenses vs. invoices by category, budget comparison, invoice aging, and sub billing summary — the data your bank needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW — Financial Review mockup -->
+<section class="dash-section" id="dashboard">
+  <div class="container">
+    <div class="section-label">Live Dashboard</div>
+    <div class="section-title">From field data to bank-ready reports.</div>
+    <div class="section-desc">Every voice note, receipt, and invoice flows into a unified platform your bank and accountant will love.</div>
+    <div class="dash-showcase">
+      <div class="dash-features">
+        <div class="dash-feat">
+          <h4>🧾 Financial Review</h4>
+          <p>Expenses and invoices in one tabbed view. Approve, reject, assign, or request more info. See pending totals at a glance.</p>
+        </div>
+        <div class="dash-feat">
+          <h4>📈 Cost Report</h4>
+          <p>Budget vs. actual by category, invoice aging (current / 30 / 60 / 90 day), sub billing summary, and burn rate tracking.</p>
+        </div>
+        <div class="dash-feat">
+          <h4>📋 Daily Project Digest</h4>
+          <p>Reports grouped by date — total crew, trade breakdown, delays, milestones, and missing subs for the whole project in one card.</p>
+        </div>
+        <div class="dash-feat">
+          <h4>👷 Sub Reliability Scores</h4>
+          <p>Reporting rate, on-time %, average completeness, and delay frequency — quantified reliability for every subcontractor.</p>
+        </div>
+      </div>
+      <div class="dash-frame">
+        <div class="dash-bar">
+          <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
+          <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
+          <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
+          <span style="font-size:9px;color:rgba(255,255,255,0.6);margin-left:8px;">admin.blankaiwork.com</span>
+        </div>
+        <div class="dash-inner">
+          <!-- Financial Review mockup -->
+          <div class="fin-tabs">
+            <div class="fin-tab active">Expenses (3 pending)</div>
+            <div class="fin-tab inactive">Invoices (1 pending)</div>
+          </div>
+          <div class="fin-table">
+            <div class="fin-head">
+              <span>Vendor</span>
+              <span>Category</span>
+              <span>Amount</span>
+              <span>Status</span>
+              <span>Actions</span>
+            </div>
+            <div class="fin-row">
+              <span class="vendor">Home Depot</span>
+              <span><span class="p-badge" style="background:#DBEAFE;color:#1E40AF;">Materials</span></span>
+              <span style="font-weight:700;">$847.32</span>
+              <span><span class="p-badge bg-amber">Pending</span></span>
+              <span style="display:flex;gap:3px;">
+                <span class="p-badge bg-green" style="cursor:default;">✓</span>
+                <span class="p-badge bg-red" style="cursor:default;">✕</span>
+              </span>
+            </div>
+            <div class="fin-row">
+              <span class="vendor">Fastenal Co.</span>
+              <span><span class="p-badge" style="background:#F3F4F6;color:#374151;">Hardware</span></span>
+              <span style="font-weight:700;">$234.10</span>
+              <span><span class="p-badge bg-amber">Pending</span></span>
+              <span style="display:flex;gap:3px;">
+                <span class="p-badge bg-green" style="cursor:default;">✓</span>
+                <span class="p-badge bg-red" style="cursor:default;">✕</span>
+              </span>
+            </div>
+            <div class="fin-row">
+              <span class="vendor">Shell Gas</span>
+              <span><span class="p-badge" style="background:#FEF3C7;color:#92400E;">Fuel</span></span>
+              <span style="font-weight:700;">$89.40</span>
+              <span><span class="p-badge bg-amber">Pending</span></span>
+              <span style="display:flex;gap:3px;">
+                <span class="p-badge bg-green" style="cursor:default;">✓</span>
+                <span class="p-badge bg-red" style="cursor:default;">✕</span>
+              </span>
+            </div>
+            <div class="fin-row">
+              <span class="vendor">Metro Electric</span>
+              <span><span class="p-badge" style="background:#FEE2E2;color:#991B1B;">Electrical</span></span>
+              <span style="font-weight:700;">$1,280.00</span>
+              <span><span class="p-badge bg-green">Approved</span></span>
+              <span style="font-size:7px;color:var(--steel);">Yesterday</span>
+            </div>
+            <div class="fin-row">
+              <span class="vendor">Apex Plumbing</span>
+              <span><span class="p-badge" style="background:#D1FAE5;color:#065F46;">Plumbing</span></span>
+              <span style="font-weight:700;">$562.00</span>
+              <span><span class="p-badge bg-green">Approved</span></span>
+              <span style="font-size:7px;color:var(--steel);">Feb 20</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -402,62 +682,94 @@
   <div class="container">
     <div class="section-label">WhatsApp Native</div>
     <div class="section-title">Your subs already know how to use it.</div>
-    <div class="section-desc">No apps to download. No training sessions. No IT support. BlankAI works through WhatsApp — the messaging app 80%+ of South Florida subcontractors already use daily.</div>
+    <div class="section-desc">No apps to download. No training. BlankAI works through WhatsApp — the app 80%+ of South Florida subs already use daily.</div>
     <div class="wa-grid">
       <div class="wa-flow">
         <div class="wa-step">
           <div class="wa-step-num">1</div>
           <div>
             <h4>GC Adds Sub via Portal</h4>
-            <p>Enter the sub's name, phone, and trade. BlankAI sends a WhatsApp welcome message introducing the service — no action needed from the sub.</p>
+            <p>Enter name, phone, and trade. BlankAI sends a WhatsApp welcome message — no action needed from the sub.</p>
           </div>
         </div>
         <div class="wa-step">
           <div class="wa-step-num">2</div>
           <div>
             <h4>Sub Reports Throughout the Day</h4>
-            <p>A 30-second voice note at 8 AM about crew, a text at noon about a delay, a photo at 3 PM of delivered materials. All auto-merged into one report.</p>
+            <p>A voice note at 8 AM about crew. A text at noon about a delay. A receipt photo at 3 PM. All auto-merged into one report.</p>
           </div>
         </div>
         <div class="wa-step">
           <div class="wa-step-num">3</div>
           <div>
             <h4>AI Checks Completeness</h4>
-            <p>BlankAI detects missing fields (crew? safety? weather?) and sends a gentle prompt. Over weeks, report quality improves organically.</p>
+            <p>Detects missing fields and sends a gentle prompt. Over weeks, report quality improves organically — no nagging required.</p>
           </div>
         </div>
         <div class="wa-step">
           <div class="wa-step-num">4</div>
           <div>
-            <h4>Smart Reminders</h4>
-            <p>Only subs who haven't reported get nudged. Subs who already confirmed their report are never nagged. Configurable cutoff times per project.</p>
+            <h4>7 PM: Review &amp; Deliver</h4>
+            <p>Sub gets a structured summary. Confirm or correct. PDF report delivered to GC. Expenses auto-categorized. Invoices matched.</p>
           </div>
         </div>
         <div class="wa-step">
           <div class="wa-step-num">5</div>
           <div>
-            <h4>Multilingual Support</h4>
-            <p>English, Spanish, and Hebrew voice notes are all transcribed and structured into English reports. Your subs speak naturally — AI handles the rest.</p>
+            <h4>GC Opens Morning Brief</h4>
+            <p>7:15 AM: open BlankAI, see which subs reported, active delays, pending expenses, and your project cost position — one screen.</p>
           </div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div style="background:var(--snow);border-radius:14px;padding:20px;border:1px solid var(--cloud);">
-          <div style="font-size:13px;font-weight:700;color:var(--brand);margin-bottom:12px;">📱 What Your Sub Sees</div>
-          <div style="background:#ECE5DD;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;">
-            <div style="background:white;padding:8px 10px;border-radius:8px;font-size:12px;max-width:85%;align-self:flex-start;">
-              👷 Hi Carlos! This is <strong>BlankAI</strong>, your daily reporting assistant for <strong>Beacon Tower</strong>.<br><br>
-              Send me a voice note or text about today's work — crew, progress, safety, delays — and I'll create your daily report automatically.<br><br>
-              📋 Just talk naturally. I'll handle the rest.
+      <div class="wa-phone-large">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-header">
+            <div class="avatar">
+              <svg width="14" height="14" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
             </div>
-            <div style="background:#DCF8C6;padding:8px 10px;border-radius:8px;font-size:12px;max-width:85%;align-self:flex-end;">
-              🎙️ We poured the slab for building C today, 6 guys on site. Inspector came at 2, passed. Rebar delivery was 2 hours late from Apex...
+            <div>
+              <div class="name">BlankAI</div>
+              <div class="sub-text">Field Intelligence</div>
             </div>
-            <div style="background:white;padding:8px 10px;border-radius:8px;font-size:12px;max-width:85%;align-self:flex-start;">
-              ✅ <strong>Beacon Tower</strong> — Got it!<br>
-              ✓ Crew ✓ Work ✓ Safety ✓ Delay detected<br>
-              Missing: weather conditions<br><br>
-              Send weather info to complete your report, or it auto-sends at 7:15 PM.
+          </div>
+          <div class="phone-chat">
+            <div class="msg msg-out">
+              <div class="voice">
+                <span style="font-size:14px;">🎙️</span>
+                <div class="voice-wave"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="voice-dur">0:47</div>
+              </div>
+              <div class="msg-time">4:32 PM</div>
+            </div>
+            <div class="msg msg-in">
+              📋 <strong>Beacon Tower</strong> — Daily Report<br>
+              👷 Crew: 8 (concrete, framing)<br>
+              🔨 Slab pour complete, Grid A-C<br>
+              ⚠️ Rebar delivery 2hr late<br>
+              ☁️ 78°F, Clear skies<br>
+              🛡️ Toolbox talk: fall protection<br><br>
+              Reply <strong>CONFIRM</strong> to send, or send corrections.
+              <div class="msg-time">4:33 PM</div>
+            </div>
+            <div class="msg msg-out" style="font-weight:600;">
+              CONFIRM ✓
+              <div class="msg-time">4:33 PM</div>
+            </div>
+            <div class="msg msg-in">
+              ✅ Report #008 sent to your GC!<br>📄 PDF delivered to inbox.
+              <div class="msg-time">4:33 PM</div>
+            </div>
+            <div class="msg msg-out">
+              <span style="font-size:14px;">📸</span> <em style="font-size:8px;color:#666;">receipt_homedepot.jpg</em>
+              <div class="msg-time">4:45 PM</div>
+            </div>
+            <div class="msg msg-in">
+              🧾 Receipt captured!<br>
+              <strong>Home Depot</strong> — $847.32<br>
+              📁 Category: Materials<br>
+              ✅ Sent to your GC for approval.
+              <div class="msg-time">4:45 PM</div>
             </div>
           </div>
         </div>
@@ -466,57 +778,7 @@
   </div>
 </section>
 
-<!-- DASHBOARD PREVIEW -->
-<section class="dash-section">
-  <div class="container">
-    <div class="section-label">Admin Portal</div>
-    <div class="section-title">See everything. Chase nothing.</div>
-    <div class="section-desc">A real-time command center for your projects — accessible from any device, anywhere.</div>
-    <div class="dash-frame">
-      <div class="dash-bar">
-        <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
-        <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
-        <div class="dash-dot" style="background:rgba(255,255,255,0.3);"></div>
-        <span style="color:rgba(255,255,255,0.6);font-size:12px;margin-left:8px;">admin.blankaiwork.com</span>
-      </div>
-      <div class="dash-content">
-        <div class="dash-metrics">
-          <div class="dash-metric">
-            <div class="label">Active Subs</div>
-            <div class="value">12</div>
-            <div class="sub">All reporting</div>
-          </div>
-          <div class="dash-metric">
-            <div class="label">Today's Reports</div>
-            <div class="value">10</div>
-            <div class="sub">83% submission rate</div>
-          </div>
-          <div class="dash-metric">
-            <div class="label">Active Delays</div>
-            <div class="value" style="color:var(--warning);">3</div>
-            <div class="sub" style="color:var(--warning);">Est. $12,400 impact</div>
-          </div>
-          <div class="dash-metric">
-            <div class="label">Month Expenses</div>
-            <div class="value">$21.3K</div>
-            <div class="sub">14 receipts captured</div>
-          </div>
-        </div>
-        <table class="dash-table">
-          <thead><tr><th>Report #</th><th>Sub</th><th>Trade</th><th>Crew</th><th>Status</th><th>Delay</th></tr></thead>
-          <tbody>
-            <tr><td><strong>#008</strong></td><td>Carlos Rivera</td><td>Concrete</td><td>8</td><td><span class="badge badge-green">Complete</span></td><td>—</td></tr>
-            <tr><td><strong>#007</strong></td><td>James Baker</td><td>Framing</td><td>6</td><td><span class="badge badge-green">Complete</span></td><td><span class="badge badge-amber">2hr — rebar</span></td></tr>
-            <tr><td><strong>#006</strong></td><td>Maria Santos</td><td>Electrical</td><td>4</td><td><span class="badge badge-green">Complete</span></td><td>—</td></tr>
-            <tr><td><strong>—</strong></td><td>David Park</td><td>HVAC</td><td>—</td><td><span class="badge badge-amber">Missing</span></td><td>—</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VISION / ROADMAP -->
+<!-- VISION -->
 <section class="vision" id="vision">
   <div class="container">
     <div class="section-label">The Vision</div>
@@ -527,43 +789,43 @@
         <div class="vision-item done">
           <div class="vision-phase">✅ Live Now</div>
           <h4>Daily Field Reporting</h4>
-          <p>Voice-to-PDF daily reports via WhatsApp. Auto-merge throughout-the-day updates. Structured data extraction with weather validation, delay detection, and crew tracking.</p>
+          <p>Voice-to-PDF daily reports via WhatsApp. Auto-merge throughout-the-day updates. Structured data extraction with weather validation, delay detection, and crew tracking. English, Spanish, and Hebrew.</p>
         </div>
         <div class="vision-item done">
           <div class="vision-phase">✅ Live Now</div>
-          <h4>Financial Capture</h4>
-          <p>Receipt photo OCR, email invoice processing, expense categorization, vendor matching, and project cost reports — bridging the gap between field and back office.</p>
+          <h4>Financial Capture &amp; Cost Intelligence</h4>
+          <p>Receipt photo OCR, email invoice processing, expense categorization, vendor matching, project cost reports with budget tracking, invoice aging, and sub billing summaries — ready for bank draws.</p>
+        </div>
+        <div class="vision-item done">
+          <div class="vision-phase">✅ Live Now</div>
+          <h4>AI Project Assistant</h4>
+          <p>Ask any question about your project data in natural language. "Which subs haven't reported this week?" "Am I over budget on materials?" Instant answers from your own data.</p>
         </div>
         <div class="vision-item">
           <div class="vision-phase">Coming Q2 2026</div>
           <h4>Photo Documentation</h4>
-          <p>Site photos embedded in daily reports. Progress tracking, issue documentation, and a visual timeline for every project. Evidence for change orders and disputes.</p>
+          <p>Site photos embedded in daily reports. Progress tracking, issue documentation, and a visual timeline. Evidence packages for change orders and disputes.</p>
         </div>
         <div class="vision-item">
           <div class="vision-phase">Coming Q2 2026</div>
           <h4>Weekly Executive Summary</h4>
-          <p>Monday morning email to the project principal: sub compliance scores, delay cost rollup, budget status, and action items. AI-synthesized from the week's field data.</p>
+          <p>Monday morning email: sub compliance scores, delay cost rollup, budget status, and action items. AI-synthesized from the week's field data.</p>
         </div>
         <div class="vision-item">
           <div class="vision-phase">Coming Q3 2026</div>
-          <h4>Change Order Evidence Packages</h4>
-          <p>One-click PDF with all supporting evidence — daily reports, photos, weather records, and delay documentation for a specific date range. GCs recover 5–15% more in change orders.</p>
-        </div>
-        <div class="vision-item">
-          <div class="vision-phase">Coming Q3 2026</div>
-          <h4>Delay Intelligence Dashboard</h4>
-          <p>Aggregate delay patterns across projects and subs. Identify which trades cause the most delays, which subs are unreliable, and where your money is bleeding.</p>
+          <h4>Change Order Evidence &amp; Delay Intelligence</h4>
+          <p>One-click PDF with supporting evidence for change orders. Aggregate delay patterns across projects. Identify which trades and subs cost you money.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
+<!-- PROOF -->
 <section class="proof">
   <div class="container">
     <h2>Built by a GC, for GCs.</h2>
-    <p>BlankAI was born from the frustration of chasing daily reports across multiple jobsites. We're building the tool we wish we had — and we're inviting GCs to shape the product.</p>
+    <p>BlankAI was born from the frustration of chasing daily reports across multiple jobsites. We're building the tool we wish we had.</p>
     <div class="proof-stats">
       <div class="stat-item">
         <span class="stat-num">&lt; 60s</span>
@@ -575,11 +837,11 @@
       </div>
       <div class="stat-item">
         <span class="stat-num">7 PM</span>
-        <span class="stat-label">Professional PDF in your inbox</span>
+        <span class="stat-label">PDF in your inbox daily</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Languages supported</span>
+        <span class="stat-num">6</span>
+        <span class="stat-label">Live platform modules</span>
       </div>
     </div>
   </div>
@@ -588,12 +850,12 @@
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <h2>Ready to stop chasing reports?</h2>
-  <p>We're onboarding a select group of South Florida GCs for our beta. Free access during the beta period — your feedback shapes the product.</p>
-  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;">
-    <a href="mailto:yosef@blankaiwork.com?subject=BlankAI%20Beta%20Access&body=Hi%20BlankAI%20team%2C%0A%0AI'm%20interested%20in%20the%20beta.%0A%0ACompany%20name%3A%20%0ANumber%20of%20active%20projects%3A%20%0ANumber%20of%20subcontractors%3A%20%0ALocation%3A%20%0A%0AThanks!" class="btn btn-primary btn-lg">Request Beta Access →</a>
-    <a href="https://admin.blankaiwork.com" class="btn btn-outline btn-lg" target="_blank">View Demo Portal</a>
+  <p>We're onboarding select South Florida GCs for our beta. Free access during the beta period — your feedback shapes the product.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+    <a href="mailto:yosi@blankaiwork.com?subject=Beta%20Access%20Request&amp;body=Hi%20Yosi%2C%0A%0AI%27m%20interested%20in%20BlankAI%20beta%20access.%0A%0ACompany%3A%0ANumber%20of%20active%20projects%3A%0ANumber%20of%20subcontractors%3A%0ALocation%3A" class="btn btn-primary btn-lg">Request Beta Access →</a>
+    <a href="https://admin.blankaiwork.com" class="btn btn-outline btn-lg" target="_blank">View Live Portal</a>
   </div>
-  <p style="font-size:13px;color:var(--steel);">Target profile: $5M–$25M commercial GC · 5–15 subs on an active project · South Florida</p>
+  <p style="font-size:12px;color:var(--steel);">Ideal profile: $5M–$25M commercial GC · 5–15 subs per project · South Florida</p>
 </section>
 
 <!-- FOOTER -->
@@ -601,27 +863,42 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="mark">
-        <svg width="14" height="14" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
+        <svg width="12" height="12" viewBox="0 0 64 64" fill="none"><path d="M16 32 C16 18 24 10 32 10 C40 10 48 18 48 32" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/><rect x="10" y="32" width="44" height="7" rx="3.5" fill="white"/></svg>
       </div>
-      <div>
+      <span>
         <span style="font-weight:700;color:var(--ink);">Blank<span style="color:var(--brand);">AI</span></span>
-        <span style="color:var(--steel);margin-left:8px;">Field Intelligence</span>
-      </div>
+        <span style="color:var(--steel);margin-left:6px;">Field Intelligence for General Contractors</span>
+      </span>
     </div>
-    <div style="font-size:12px;color:var(--steel);">© 2026 BlankAI. All rights reserved. Miami, FL.</div>
     <div class="footer-links">
-      <a href="mailto:yosef@blankaiwork.com">Contact</a>
-      <a href="mailto:yosef@blankaiwork.com">Support</a>
-      <span style="color:var(--cloud);">|</span>
-      <span style="font-size:12px;">yosef@blankaiwork.com</span>
+      <a href="mailto:yosi@blankaiwork.com">Contact</a>
+      <a href="https://admin.blankaiwork.com" target="_blank">Portal</a>
+      <span style="color:var(--fog);">© 2026 BlankAI</span>
     </div>
   </div>
 </footer>
 
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+<script data-cfasync="false">
+  // Nav scroll shadow
+  var navEl = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    navEl.classList.toggle('scrolled', window.scrollY > 10);
   });
+
+  // Smooth scroll for anchor links
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    (function(link) {
+      var href = link.getAttribute('href');
+      if (href && href.charAt(0) === '#' && href.length > 1) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.getElementById(href.substring(1));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    })(links[i]);
+  }
 </script>
 </body>
 </html>
